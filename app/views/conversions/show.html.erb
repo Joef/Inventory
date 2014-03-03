@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Measure a:</strong>
+  <%= @conversion.measure_a_id %>
+</p>
+
+<p>
+  <strong>Measure b:</strong>
+  <%= @conversion.measure_b_id %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @conversion.quantity %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_conversion_path(@conversion) %> |
+<%= link_to 'Back', conversions_path %>

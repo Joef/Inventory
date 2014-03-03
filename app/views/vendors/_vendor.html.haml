@@ -1,0 +1,12 @@
+%tr
+  %td= vendor.name 
+  %td= vendor.address_1 
+  %td= vendor.address_2 
+  %td= vendor.address_city 
+  %td= vendor.address_state 
+  %td= link_to 'Add Invoice', new_vendor_invoice_url(vendor.id)
+  %td= link_to 'Show', vendor 
+  %td= link_to 'Edit', edit_vendor_path(vendor) 
+  %td= link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' } 
+      
+

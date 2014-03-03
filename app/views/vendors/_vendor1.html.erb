@@ -1,0 +1,14 @@
+
+      <tr>
+        <td><%= vendor.name %></td>
+        <td><%= vendor.address_1 %></td>
+        <td><%= vendor.address_2 %></td>
+        <td><%= vendor.address_city %></td>
+        <td><%= vendor.address_state %></td>
+        <td><%= vendor.address_postal_code %></td>
+        <td><%= link_to 'Add Invoice', new_vendor_invoice_url(vendor.id)%></td>
+        <td><%= link_to 'Show', vendor %></td>
+        <td><%= link_to 'Edit', edit_vendor_path(vendor) %></td>
+        <td><%= link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+

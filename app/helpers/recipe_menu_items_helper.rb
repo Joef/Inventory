@@ -1,0 +1,2 @@
+module RecipeMenuItemsHelper
+end

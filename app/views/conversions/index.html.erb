@@ -1,0 +1,22 @@
+<h1>Listing conversions</h1>
+<p id="notice"><%= notice %></p>
+<table>
+  
+
+  <tbody>
+    <% @conversions.each do |conversion| %>
+      <tr>
+        <td><%= link_to conversion.measure_a.name, measure_path(conversion.measure_a.id) %></td>
+        <td><%= link_to conversion.measure_b.name, measure_path(conversion.measure_b.id) %></td>
+        <td><%= conversion.quantity %></td>
+        <td><%= link_to 'Show', conversion %></td>
+        <td><%= link_to 'Edit', edit_conversion_path(conversion) %></td>
+        <td><%= link_to 'Destroy', conversion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Conversion', new_conversion_path %>

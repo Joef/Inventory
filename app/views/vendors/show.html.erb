@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @vendor.name %>
+</p>
+
+<p>
+  <strong>Address 1:</strong>
+  <%= @vendor.address_1 %>
+</p>
+
+<p>
+  <strong>Address 2:</strong>
+  <%= @vendor.address_2 %>
+</p>
+
+<p>
+  <strong>Address city:</strong>
+  <%= @vendor.address_city %>
+</p>
+
+<p>
+  <strong>Address state:</strong>
+  <%= @vendor.address_state %>
+</p>
+
+<p>
+  <strong>Address postal code:</strong>
+  <%= @vendor.address_postal_code %>
+</p>
+
+<%= link_to 'Edit', edit_vendor_path(@vendor) %> 
+
+<% if @vendor.invoices.length > 0 %>
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Invoice date</th>
+      <th>Vendor</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<%= render(@vendor.invoices)%>
+  </tbody>
+</table>
+<% end %>
+<%= link_to 'Add Invoice', new_vendor_invoice_url(@vendor.id)%>
+
+

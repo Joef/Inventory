@@ -1,0 +1,9 @@
+<li>
+	<%= f.label :quantity %>
+    <%= f.text_field :quantity, size: 10 %>
+ 	<%= f.collection_select :ingredient_id, Ingredient.order_by_category, :id, :name, prompt: 'Select an ingredient' %>
+  
+ 
+    
+	
+</li>

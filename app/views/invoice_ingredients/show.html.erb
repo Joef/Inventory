@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Invoice:</strong>
+  <%= @invoice_ingredient.invoice_id %>
+</p>
+
+<p>
+  <strong>Ingredient:</strong>
+  <%= @invoice_ingredient.ingredient_id %>
+</p>
+
+<p>
+  <strong>Measure:</strong>
+  <%= @invoice_ingredient.measure_id %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @invoice_ingredient.quantity %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @invoice_ingredient.price %>
+</p>
+
+<p>
+  <strong>Extended:</strong>
+  <%= @invoice_ingredient.extended %>
+</p>
+
+<%= link_to 'Edit', edit_invoice_ingredient_path(@invoice_ingredient) %> |
+<%= link_to 'Back', invoice_ingredients_path %>

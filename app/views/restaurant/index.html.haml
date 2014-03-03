@@ -1,0 +1,12 @@
+<h1>Restaurant Manager</h1>
+- if notice
+  %p{:id => "notice"}=notice
+
+
+%table
+  - @vendors.each do |vendor|
+    = render vendor
+    
+
+
+= link_to 'New Vendor', new_vendor_path 

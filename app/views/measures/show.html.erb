@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @measure.name %> (<%= @measure.abbreviation %>)</h1><span><%= link_to 'Edit', edit_measure_path(@measure) %> |
+<%= link_to 'Back', measures_path %></span>
+<table>
+ <% @conversions.each do |conversion| %>
+      <tr>
+        <td>1 <%= conversion.measure_a.name %></td>
+        <td>=</td> 
+        <td><%= conversion.quantity %></td>
+        <td><%= conversion.measure_b.name %>(s)</td>
+        <td><%= link_to 'Edit', edit_conversion_path(conversion)%></td>
+        <td><%= link_to 'X', conversion, method: :delete, data: { confirm: 'Are you sure?' }%>
+      </tr>
+    <% end %>
+</table>
+<%= link_to 'Add Conversion', new_measure_conversion_url%>
+<br>
+
