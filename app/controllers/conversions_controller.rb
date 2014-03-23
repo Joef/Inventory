@@ -1,10 +1,16 @@
 class ConversionsController < ApplicationController
   before_action :set_conversion, only: [:show, :edit, :update, :destroy]
+  
+  before_action :get_measure
+  
+  def get_measure
+    @measure = Measure.find(params[:measure_id]) 
+  end
 
   # GET /conversions
   # GET /conversions.json
   def index
-    @conversions = Conversion.all
+    @conversions = @measure.conversions
   end
 
   # GET /conversions/1
@@ -14,7 +20,7 @@ class ConversionsController < ApplicationController
 
   # GET /conversions/new
   def new
-    @conversion = Conversion.new
+    @conversion = @measure.conversions.new
     @conversion.measure_a_id = params[:id]
     
   end
@@ -26,7 +32,7 @@ class ConversionsController < ApplicationController
   # POST /conversions
   # POST /conversions.json
   def create
-    @conversion = Conversion.new(conversion_params)
+    @conversion = @measure.conversions.new(params[:conversion])
     
     
     respond_to do |format|

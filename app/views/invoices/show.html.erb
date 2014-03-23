@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
+<% if (notice) %>
+<p class="alert alert-warning fade in" id="notice">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+	<%= notice %>
+</p>
+<% end %>
 
 <p>
   <strong>Number:</strong>
@@ -12,7 +17,7 @@
 
 <p>
   <strong>Vendor:</strong>
-  <%= @invoice.vendor_id %>
+  <%= @invoice.vendor.name %>
 </p>
 
 <%= link_to 'Edit', edit_invoice_path(@invoice) %> |

@@ -15,3 +15,23 @@
 //= require turbolinks
 //= require_tree .
 //= require cocoon
+//= require bootstrap
+//= require jquery.ui.all
+
+(function($) {
+        $.fn.currencyFormat = function() {
+            this.each( function( i ) {
+                $(this).load( function( e ){
+                    if( isNaN( parseFloat( this.value ) ) ) return;
+                    this.value = parseFloat(this.value).toFixed(2);
+                });
+                
+            });
+            return this; //for chaining
+        }
+    })( jQuery );
+
+$(function(){
+  $('.datepicker').datepicker({ dateFormat: "yy-mm-dd" });
+  $('.currency').currencyFormat();
+});

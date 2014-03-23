@@ -1,0 +1,10 @@
+%tr
+  %td
+    %small= invoice.id
+  %td= invoice.number
+  %td= invoice.invoice_date
+  %td= number_to_currency(invoice.total)
+  %td= link_to 'Edit', edit_vendor_invoice_url(vendor_id: invoice.vendor_id, id: invoice.id), class: "btn btn-default" 
+  %td= link_to raw('<span class=""></span>Delete'), invoice, method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-trash" 
+      
+

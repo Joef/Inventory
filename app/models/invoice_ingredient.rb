@@ -5,4 +5,7 @@ class InvoiceIngredient < ActiveRecord::Base
   
   accepts_nested_attributes_for :ingredient,
                                 :reject_if => :all_blank
+                                
+  validates :ingredient_id, :measure_id, presence: true
+  validates :price, :extended, numericality: {greater_than_or_equal_to: 0.01}
 end

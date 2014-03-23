@@ -1,0 +1,55 @@
+.row-fluid
+  .span8
+    %h1= @vendor.name
+    - if @vendor.invoices.length > 0 
+      %h5 
+        Invoices
+        
+      %table.table.table-hover.table-striped
+        %thead
+          %tr
+          %th
+          %th Number 
+          %th Date
+          %th Price
+          %th
+          %th
+        %tbody
+          = render(@vendor.invoices)
+        %tfoot
+          %tr
+            %td(colspan="6" style="text-align:center;")= link_to('Add Invoice', new_vendor_invoice_url(@vendor.id), class: "btn btn-default")
+      %br
+     
+    
+  .span4
+    %h5 Address
+    = @vendor.address_1 
+    
+    -if @vendor.address_2
+      %br
+      = @vendor.address_2
+    %br
+    = @vendor.address_city  
+    ,
+    = @vendor.address_state 
+    = @vendor.address_postal_code 
+    .links
+      = link_to 'Edit', edit_vendor_path(@vendor), class: "btn btn-default"
+.row-fluid
+  .span8
+    
+    
+        
+    .field.row-fluid
+      .span12
+        
+  .span4
+      
+
+      
+      
+
+
+
+

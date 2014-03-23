@@ -1,12 +1,9 @@
 <h1>Restaurant Manager</h1>
-- if notice
-  %p{:id => "notice"}=notice
 
-
-%table
+%table(style="width: 100%")
   - @vendors.each do |vendor|
     = render vendor
     
 
-
-= link_to 'New Vendor', new_vendor_path 
+%br
+= button_to 'New Vendor', new_vendor_path 

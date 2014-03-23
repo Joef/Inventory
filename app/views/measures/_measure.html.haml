@@ -1,0 +1,22 @@
+%tr{:id=> "measure_#{measure.id}"}
+  %td
+    %small= measure.id
+  %td= measure.name 
+  %td= measure.abbreviation
+  %td
+  %td
+  %td
+    - if measure.conversions.length
+      - measure.conversions.each do |c|
+      
+        %ul
+          %li
+            = link_to "--> #{c.quantity}", edit_measure_conversion_path(:id => c, :measure_id => measure) 
+            = "#{c.measure_b.name} (s)" 
+            = link_to 'X', [measure, c], method: :delete, data: { confirm: 'Are you sure?' } 
+       
+    
+  %td
+    = link_to 'Add Conversion', new_measure_conversion_path(:measure_id => measure)
+    = link_to 'Edit', edit_measure_path(measure) 
+    = link_to 'Destroy', measure, method: :delete, data: { confirm: 'Are you sure?' }, remote: :true  

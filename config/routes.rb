@@ -1,14 +1,16 @@
 Inventory::Application.routes.draw do
-  resources :conversions
-
+  
   
   resources :recipes
 
   resources :recipe_menu_items
 
   resources :menu_items
-
-  resources :measures
+  
+  #all conversions belong to a parent measure
+  resources :measures do
+    resources :conversions
+  end
 
   resources :categories
 
@@ -18,20 +20,17 @@ Inventory::Application.routes.draw do
 
   resources :invoice_ingredients
 
-  resources :invoices
-
-  resources :vendors
   
+  #all invoices belong to vendors
+  resources :vendors do
+    resources :invoices
+  end
+  resources :invoices, only: :index 
   
   root to:'restaurant#index', as: 'restaurant'
   
-  #all invoices belong to vendors
-  get 'vendors/:id/invoices/new' => 'invoices#new', as: :new_vendor_invoice
-  get 'vendors/:vendor_id/invoices/:id/edit' => 'invoices#edit', as: :edit_vendor_invoice
   
-  #all conversions belong to a parent measure
-  get 'measures/:id/conversions/new' => 'conversions#new', as: :new_measure_conversion
-  get 'measures/:measure_id/conversions/:id/edit' => 'conversions#edit', as: :edit_measure_conversion
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

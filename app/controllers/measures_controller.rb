@@ -4,7 +4,7 @@ class MeasuresController < ApplicationController
   # GET /measures
   # GET /measures.json
   def index
-    @measures = Measure.all
+    @measures = Measure.includes(:conversions).order(:name)
   end
 
   # GET /measures/1
@@ -37,6 +37,7 @@ class MeasuresController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @measure.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 
@@ -61,6 +62,7 @@ class MeasuresController < ApplicationController
     respond_to do |format|
       format.html { redirect_to measures_url }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -72,6 +74,6 @@ class MeasuresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def measure_params
-      params.require(:measure).permit(:name, :abbreviation)
+      params.require(:measure).permit(:name, :abbreviation, :measure_type)
     end
 end

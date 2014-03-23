@@ -1,0 +1,56 @@
+= form_for(@invoice) do |f| 
+  - if @invoice.errors.any? 
+    .alert.alert-danger.fade.in
+      %button.close(type="button" data-dismiss="alert") x
+      %h4
+        = "#{pluralize(@invoice.errors.count, 'error')} prohibited this invoice from being saved:"
+
+      %ul
+      - @invoice.errors.full_messages.each do |msg| 
+        %li= msg 
+       
+      
+    
+  .field.row-fluid
+    .span4= f.label :vendor_id
+    .span8= f.collection_select :vendor_id, Vendor.all, :id, :name, prompt: 'Select a vendor' 
+
+  .field.row-fluid
+    .span4= f.label :number
+    .span8= f.text_field :number 
+  
+  .field.row-fluid
+    .span4= f.label :invoice_date 
+    .span8= f.text_field :invoice_date, class: "datepicker" 
+  
+  .row-fluid.span12.line_items
+    %table#invoice_ingredients.table.table-striped
+      %tfoot
+        %tr
+          %td(colspan="6" style="text-align:center;")= link_to_add_association('Add Line', f, :invoice_ingredients, 'data-association-insertion-node' => '#invoice_ingredients',		'data-association-insertion-method' => 'append',		:wrap_object => Proc.new {|invoice_ingredient| invoice_ingredient.build_ingredient; invoice_ingredient}, class: "btn btn-default")
+   
+      %tr.header
+        %th Ingredients
+        %th(style="width: 10%") Quantity
+        %th Measure
+        %th(style="width: 10%") Price
+        %th(style="width: 10%") Ext
+        %th 
+        
+    
+        = f.fields_for :invoice_ingredients do |invoice_ingredient| 
+          = render 'invoice_ingredient_fields', f: invoice_ingredient 
+		
+		
+    
+   		
+
+  .actions
+    = f.submit 'Save invoice', class: "btn btn-primary" 
+    
+#modal.modal.hid.fade(role="dialog" aria-labelledby="modalLabel" aria-hidden="true")
+  .modal-header
+    %button.close(type="button" data-dismiss="modal" aria-hidden="true") x
+    %h3#modalLabel Add Ingredient
+  .modal-body
+  

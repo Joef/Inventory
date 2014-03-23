@@ -1,8 +1,9 @@
 <h1>Listing invoices</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
+      <th><small>Id</small></th>
       <th>Number</th>
       <th>Date</th>
       <th>Vendor</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @invoices.each do |invoice| %>
       <tr>
+        <td><%= invoice.id %></td>
         <td><%= invoice.number %></td>
         <td><%= invoice.invoice_date %></td>
         <td><%= invoice.vendor.name %></td>

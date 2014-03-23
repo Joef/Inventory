@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301173306) do
+ActiveRecord::Schema.define(version: 20140304134950) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140301173306) do
     t.integer  "vendor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "total"
   end
 
   create_table "measures", force: true do |t|
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20140301173306) do
     t.string   "abbreviation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "measure_type"
   end
 
   create_table "menu_items", force: true do |t|

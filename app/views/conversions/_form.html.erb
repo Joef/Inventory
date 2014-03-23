@@ -1,4 +1,4 @@
-<%= form_for(@conversion) do |f| %>
+<%= form_for([@measure, @conversion]) do |f| %>
   <% if @conversion.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@conversion.errors.count, "error") %> prohibited this conversion from being saved:</h2>
@@ -18,7 +18,7 @@
   	Contains:
     <%= f.text_field :quantity, size: 10 %>
     
-    <%= f.collection_select :measure_b_id, Measure.find(:all, :conditions => ["id != ?", @conversion.measure_a_id]), :id, :name_plural, prompt: 'Select a measure' %>
+    <%= f.collection_select :measure_b_id, Measure.find(:all, :conditions => ["id != ?", @measure.id]), :id, :name_plural, prompt: 'Select a measure' %>
    
   
     <%= f.submit %>

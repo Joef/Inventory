@@ -1,0 +1,8 @@
+%ul
+  %li
+    = conversion.quantity
+    = "#{conversion.measure_b.abbr} (s)" 
+    = link_to 'Edit', edit_measure_conversion_path(:id => conversion, :measure_id => measure) 
+    = link_to 'X', conversion, method: :delete, data: { confirm: 'Are you sure?' } 
+       
+    

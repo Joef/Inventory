@@ -32,8 +32,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-
+gem 'cocoon'
 gem 'haml'
+gem 'haml-rails'
+gem 'jquery-ui-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

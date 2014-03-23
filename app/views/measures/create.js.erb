@@ -1,0 +1,14 @@
+$name = $('input#measure_name');
+$abbr = $('input#measure_abbreviation');
+
+<% if @measure.new_record? %>
+  if($.trim($name.val()).length == 0)
+    $name.effect('highlight', {color: 'red'}) 
+  if($.trim($abbr.val()).length == 0)
+    $abbr.effect('highlight', {color: 'red'});
+<% else %>
+  $('table#measures tbody tr:last').before("<%=escape_javascript(render @measure) %>");
+  $('div#<%= dom_id(@measure) %>').effect('highlight', {color: 'yellow'});
+  $name.val("") ;
+  $abbr.val("") ;
+<% end %>
