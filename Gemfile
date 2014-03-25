@@ -36,6 +36,9 @@ gem 'cocoon'
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-ui-rails'
+gem 'thin'
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
@@ -47,4 +50,7 @@ gem 'jquery-ui-rails'
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+ gem 'debugger', group: [:development, :test]
+ 
+#quiet the verbose asset logging
+gem 'quiet_assets', group: :development 
