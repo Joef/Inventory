@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304134950) do
+ActiveRecord::Schema.define(version: 20140325150714) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
+    t.integer  "custom"
   end
 
   create_table "conversions", force: true do |t|
@@ -34,17 +36,26 @@ ActiveRecord::Schema.define(version: 20140304134950) do
     t.decimal  "last_price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
+    t.integer  "custom"
   end
 
   create_table "invoice_ingredients", force: true do |t|
     t.integer  "invoice_id"
     t.integer  "ingredient_id"
     t.integer  "measure_id"
-    t.decimal  "quantity"
+    t.decimal  "qty_ordered"
     t.decimal  "price"
     t.decimal  "extended"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "qty_shipped"
+    t.string   "brand"
+    t.string   "item_number"
+    t.string   "vendor_number"
+    t.text     "description"
+    t.string   "unit"
+    t.decimal  "pack"
   end
 
   create_table "invoices", force: true do |t|
@@ -62,6 +73,9 @@ ActiveRecord::Schema.define(version: 20140304134950) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "measure_type"
+    t.integer  "volume_weight"
+    t.integer  "english_metric"
+    t.integer  "custom"
   end
 
   create_table "menu_items", force: true do |t|
