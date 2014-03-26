@@ -37,7 +37,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'jquery-ui-rails'
 gem 'thin'
-
+gem 'acts_as_tree'
 
 
 # Use ActiveModel has_secure_password

@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @categories = Category.find_all_others(@category.id)
+    @categories = Category.all #Category.find_all_others(@category.id)
     @children = @categories.where(parent_id: @category.id)
     @ingredients = @category.ingredients
     #use if not displaying all other categories
@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new(category_params)
-    @category.custom = 0 #all products created by the app are custom
+    @category.custom = 1 #all categories created by the app are custom
     respond_to do |format|
       if @category.save
         format.html { redirect_to categories_path, notice: "Category '#{@category.name}' was successfully created." }

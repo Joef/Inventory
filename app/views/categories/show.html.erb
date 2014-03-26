@@ -1,50 +1,63 @@
-<div class="breadcrumb small"><strong><%= link_to 'Categories', categories_path %></strong>: <%=  !@category.parent_id.nil? ?  show_nested_category_name(@categories, @category, true, ">") :  raw("&nbsp;") %></div>
-<h1><%= @category.name %></h1><span class="small"><%= link_to 'Edit', edit_category_path(@category) %> </span>
-<p>
+<div class="breadcrumb small"><strong><%= link_to 'Categories', categories_path %></strong>: 
+	
+	
+	<% for category in @category.ancestors.reverse %>
+	  <%= link_to category.name, category %> >
+	<% end %>
+	
+	<%= @category.name %>
+</div>
+<h1 style="display:inline"><%= @category.name %></h1> <span class="small"><%= link_to 'Edit', edit_category_path(@category) if @category.custom? %> </span>
+<p> 
   
   <%= @category.description %>
 </p>
 
-<div class="row">
 
-<div class="col-md-6">
-<h5>Subcategories</h5>
-<%#= form_for @category, url: {action: "update"} do |f| %>
-<ul>
-<% @categories.each do |category| %>
-  <li>
-  <div class="checkbox" >
-  
-  <%= check_box_tag(:parent_id, category.id, category.parent_id == @category.id, disabled: true) %>
- 
-  <%= label_tag(category.id, (link_to category.name, category_path(category)) )%>
-  </div>
-  </li>
+	<div class="row">
+	
+		<div class="span6 group">
+			<div class="pad">		
+			<h5>Subcategories</h5>
+			
+			
+			<% @categories.each do |category| %>
+			  <li>
+			  <div class="checkbox" >
+			  
+			  <%= check_box_tag(:parent_id, category.id, category.parent_id == @category.id, disabled: category.id == @category.id) %>
+			 
+			  <%= label_tag(category.id, ( (category.id != @category.id) ? link_to(category.name, category_path(category)) : category.name ) )%>
+			  </div>
+			  </li>
+			
+			<% end %>
+			
+			</div>	
+		</div>
+		
+		<div class="span6 group">
+			<div class="pad">
+			<h5>Ingredients</h5>
+			
+			 
+			
+				<% @ingredients.each do |ingredient| %>
+				  <li>
+				  <div class="checkbox" >
+				  
+				  <%= check_box_tag(:id, ingredient.name, true, disabled: true) %>
+				 
+				  <%= label_tag(:id, (link_to ingredient.name, ingredient_path(ingredient)) )%>
+				  </div>
+				  </li>
+				
+				<% end %>
+		    <% if @ingredients.empty?  %>
+			  
+				<p><i>No ingredients in this category.</i></p>
+			<% end %>
+			</div>
+		</div>
+	</div>
 
-<% end %>
-<%# end %>
-</ul>
-</div>
-
-<div class="col-md-6">
-<h5>Ingredients</h5>
-<% if @ingredients.length > 0 %>
-<ul>
-<% @ingredients.each do |ingredient| %>
-  <li>
-  <div class="checkbox" >
-  
-  <%= check_box_tag(:id, ingredient.name, true, disabled: true) %>
- 
-  <%= label_tag(:id, (link_to ingredient.name, ingredient_path(ingredient)) )%>
-  </div>
-  </li>
-
-<% end %>
-</ul>
-<% else %>
-<p><i>No ingredients in this category.</i></p>
-<% end if %>
-
-</div>
-</div>

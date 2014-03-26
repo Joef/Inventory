@@ -17,6 +17,9 @@ module CategoriesHelper
     end
     return name
   end
+  
+  
+  
   private
   def find_node(categories, seed)
     categories.each do |category|
