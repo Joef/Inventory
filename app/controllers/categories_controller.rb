@@ -10,25 +10,36 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @categories = Category.find_all_others(@category.id)
+    @children = @categories.where(parent_id: @category.id)
+    @ingredients = @category.ingredients
+    #use if not displaying all other categories
+    #@children = @category.children.all
   end
 
   # GET /categories/new
   def new
     @category = Category.new
+    if(params[:parent_id])
+      @category.parent_id = params[:parent_id]
+    end
   end
 
   # GET /categories/1/edit
   def edit
+    if @category.custom == 0 
+      redirect_to categories_path, notice: "Access denied for category '#{@category.name}'."
+    end
   end
 
   # POST /categories
   # POST /categories.json
   def create
     @category = Category.new(category_params)
-
+    @category.custom = 0 #all products created by the app are custom
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.html { redirect_to categories_path, notice: "Category '#{@category.name}' was successfully created." }
         format.json { render action: 'show', status: :created, location: @category }
       else
         format.html { render action: 'new' }
@@ -42,7 +53,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+        format.html { redirect_to categories_path, notice: "Category '#{@category.name}' was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -64,11 +75,11 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.includes(:ingredients).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name, :description)
+      params.require(:category).permit(:name, :description, :parent_id, :custom)
     end
 end

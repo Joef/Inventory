@@ -1,5 +1,5 @@
 class RestaurantController < ApplicationController
   def index
-    @vendors = Vendor.order(:name)
+    @vendors = Vendor.includes(:invoices).order(:name)
   end
 end

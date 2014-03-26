@@ -1,14 +1,18 @@
 module ApplicationHelper
+  def class_name(link_path)
+    current_page?(link_path) ? ' class="active"' : ''
+  end
+  
   def nav_link(link_text, link_path)
   
-  #usage:   nav_link 'Home', root_path
-  #output:  <li class="current"><a href="/">Home</a></li>
+    #usage:   nav_link 'Home', root_path
+    #output:  <li class="current"><a href="/">Home</a></li>
   
-  class_name = current_page?(link_path) ? 'active' : ''
+    class_name = current_page?(link_path) ? 'class="active"' : ''
 
-  content_tag(:li, :class => class_name) do
-    link_to link_text, link_path
-  end
+    content_tag(:li, :class => class_name) do
+      link_to link_text, link_path
+    end
   end
   
   # if controller?("homepage") && action?("index", "show")

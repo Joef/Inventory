@@ -19,6 +19,13 @@
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>
+  
+  <div class="field input-group">
+  	
+  	<%= f.label :parent_id, "Subcategory of"%>
+  	
+  	<%= f.collection_select :parent_id, Category.find_all_others(@category.id), :id, :name, prompt: 'Select...' %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,6 +1,12 @@
 <h1>Restaurant Manager</h1>
 
 %table(style="width: 100%")
+  %tr
+    %th= sortable "name"
+    %th Last Invoice Num (Amount) Date
+    %th= "Account in #{Time.now.year}"
+    %th
+    
   - @vendors.each do |vendor|
     = render vendor
     
