@@ -4,7 +4,7 @@ class VendorsController < ApplicationController
   # GET /vendors
   # GET /vendors.json
   def index
-    @vendors = Vendor.all
+    @vendors = Vendor.order(params[:sort])
   end
 
   # GET /vendors/1
@@ -28,7 +28,7 @@ class VendorsController < ApplicationController
 
     respond_to do |format|
       if @vendor.save
-        format.html { redirect_to restaurant_url, notice: 'Vendor was successfully created.' }
+        format.html { redirect_to vendor_path(@vendor), notice: 'Vendor was successfully created.' }
         format.json { render action: 'show', status: :created, location: @vendor }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class VendorsController < ApplicationController
   def update
     respond_to do |format|
       if @vendor.update(vendor_params)
-        format.html { redirect_to restaurant_url, notice: "Vendor #{@vendor.name} was successfully updated." }
+        format.html { redirect_to vendor_path(@vendor), notice: "Vendor #{@vendor.name} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,6 +69,8 @@ class VendorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vendor_params
-      params.require(:vendor).permit(:name, :address_1, :address_2, :address_city, :address_state, :address_postal_code)
+      params.require(:vendor).permit(:name, :address_1, :address_2, :address_city, :address_state, :address_postal_code,
+        invoice: [:id, :number, :invoice_date, :vendor_id])
+      
     end
 end

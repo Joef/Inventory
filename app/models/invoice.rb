@@ -11,6 +11,7 @@ class Invoice < ActiveRecord::Base
     accepts_nested_attributes_for :ingredients
     
     before_save :calculate_total_price
+    
                                     
     def total_price 
       invoice_ingredients.to_a.sum{|invoice_ingredient| invoice_ingredient.extended}

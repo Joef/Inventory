@@ -2,8 +2,13 @@ class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
   before_action :get_vendor
   
+  
+  
   def get_vendor
     @vendor = Vendor.find(params[:vendor_id])
+  end
+  def update_total
+    
   end
 
   # GET /invoices
@@ -21,26 +26,28 @@ class InvoicesController < ApplicationController
   # GET /invoices/new
   def new
     @invoice = Invoice.new
-    if(params[:id])
-      @vendor = Vendor.find(params[:id])
-      @invoice.vendor_id = @vendor.id
-    end
+    @invoice.vendor_id = @vendor.id
+    
     #get_ingredients
   end
 
   # GET /invoices/1/edit
   def edit
+    
     #get_ingredients
   end
 
   # POST /invoices
   # POST /invoices.json
   def create
-    @invoice = @vendor.invoices.new(params[:invoice])
-    @invoice.total = @invoice.total_price
+     
+    
+    #@invoice = @vendor.invoices.new(params[:invoice]) rails 3
+    @invoice = @vendor.invoices.new(invoice_params)
+    
     respond_to do |format|
       if @invoice.save
-        format.html { redirect_to vendor_path(@invoice.vendor), method: :show, notice: "Invoice #{@invoice.number} was successfully created." }
+        format.html { redirect_to [@vendor, @invoice],  notice: "Invoice #{@invoice.number} was successfully created." }
         format.json { render action: 'show', status: :created, location: @invoice }
       else
         format.html { render action: 'new' }
@@ -89,7 +96,7 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:number, :invoice_date, :vendor_id, invoice_ingredients_attributes: [:id, :quantity, :invoice_id, :ingredient_id, :measure_id, :price, :extended, :_destroy])
+      params.require(:invoice).permit(:id, :number, :invoice_date, :vendor_id, invoice_ingredients_attributes: [:id, :qty_ordered, :qty_shipped, :unit, :description, :pack, :invoice_id, :ingredient_id, :measure_id, :price, :extended, :_destroy])
     end
     
     

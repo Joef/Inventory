@@ -1,12 +1,18 @@
 %tr
-  %td= vendor.name 
-  %td= vendor.address_1 
-  %td= vendor.address_2 
-  %td= vendor.address_city 
-  %td= vendor.address_state 
-  %td= link_to 'Add Invoice', new_vendor_invoice_url(vendor.id)
-  %td= link_to 'Show', vendor 
-  %td= link_to 'Edit', edit_vendor_path(vendor) 
-  %td= link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' } 
+  %td= link_to vendor.name, vendor  
+  %td
+    -if !vendor.last_invoice.nil?
+      = link_to vendor.last_invoice.number, edit_vendor_invoice_path(vendor, vendor.last_invoice)  
+      = " (" + number_to_currency(vendor.last_invoice.total) + ")" 
+      %span.small= vendor.last_invoice.invoice_date 
+    [
+    = link_to 'Add Invoice', new_vendor_invoice_url(vendor.id) 
+    ]
+  %td= number_to_currency(vendor.total_spend) if !vendor.total_spend.nil?
+  %td
+    
+    = link_to 'Edit', edit_vendor_path(vendor), class: "btn btn-default" 
+    
+    = link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' } , class: "icon-trash" 
       
 

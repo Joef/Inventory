@@ -2,8 +2,13 @@
   %td
     = f.collection_select :ingredient_id, Ingredient.all, :id, :name, prompt: 'Select an ingredient'
     /=link_to "add", new_ingredient_path, :role => "button", :class => "btn", "data-toggle"=>"modal", "data-target"=>"#modal", "data-keyboard"=>"true"
-  %td= f.text_field :quantity, style: "width: 20px" 
-  %td= f.collection_select :measure_id, Measure.all, :id, :name, prompt: 'Select a measure' 
+  
+  %td= f.text_field :qty_ordered, style: "width: 40px"
+  %td= f.text_field :qty_shipped, style: "width: 40px" 
+  %td= f.select :unit, InvoiceIngredient::UNIT_TYPES, {prompt: '...'}, {style: "width: 60px"} 
+  %td= f.text_field :description
+  %td= f.collection_select :measure_id, Measure.all, :id, :abbreviation, {prompt: 'Select a measure'}, {style: "width: 60px"}
+  /%td= f.select :pack, InvoiceIngredient::PACK_TYPES, prompt: '...' 
   %td= f.text_field :price,  style: "width: 50px" , class: "currency"
   %td= f.text_field :extended,  style: "width: 50px", class: "currency" 
   %td= link_to_remove_association raw('<span class="glyphicon glyphicon-star"></span>Remove'), f, :role=>"button", :class=>"btn btn-default" 

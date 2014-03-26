@@ -1,4 +1,4 @@
-= form_for(@invoice) do |f| 
+= form_for([@vendor, @invoice]) do |f| 
   - if @invoice.errors.any? 
     .alert.alert-danger.fade.in
       %button.close(type="button" data-dismiss="alert") x
@@ -31,8 +31,11 @@
    
       %tr.header
         %th Ingredients
-        %th(style="width: 10%") Quantity
-        %th Measure
+        %th(style="width: 10%") Qty Ordered
+        %th(style="width: 10%") Shipped
+        %th Unit
+        %th Desc
+        %th Pack
         %th(style="width: 10%") Price
         %th(style="width: 10%") Ext
         %th 
