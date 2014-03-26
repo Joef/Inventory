@@ -5,7 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Category</th>
-      <th>Last price</th>
+      
       <th></th>
       <th></th>
       <th></th>
@@ -15,12 +15,11 @@
   <tbody>
     <% @ingredients.each do |ingredient| %>
       <tr>
-        <td><%= ingredient.name %></td>
-        <td><%= ingredient.category.name if !ingredient.category.nil? %></td>
-        <td><%= ingredient.last_price %></td>
-        <td><%= link_to 'Show', ingredient %></td>
-        <td><%= link_to 'Edit', edit_ingredient_path(ingredient) %></td>
-        <td><%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to ingredient.name, ingredient %></td>
+        <td><%= link_to ingredient.category.name, ingredient.category if !ingredient.category.nil? %></td>
+        
+        <td><%= link_to 'Edit', edit_ingredient_path(ingredient) if ingredient.custom? %></td>
+        <td><%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } if ingredient.custom? %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +27,4 @@
 
 <br>
 
-<%= link_to 'New Ingredient', new_ingredient_path %>
+<%= link_to 'Add New', new_ingredient_path, class: 'btn btn-default' %>

@@ -16,17 +16,23 @@ class IngredientsController < ApplicationController
   # GET /ingredients/new
   def new
     @ingredient = Ingredient.new
+    if(params[:parent_id])
+      @ingredient.parent_id = params[:parent_id]
+    end
   end
 
   # GET /ingredients/1/edit
   def edit
+    if @ingredient.custom == 0 
+      redirect_to ingredients_path, notice: "Access denied for ingredient '#{@ingredient.name}'."
+    end
   end
 
   # POST /ingredients
   # POST /ingredients.json
   def create
     @ingredient = Ingredient.new(ingredient_params)
-
+    @ingredient.custom = 0
     respond_to do |format|
       if @ingredient.save
         format.html { redirect_to @ingredient, notice: 'Ingredient was successfully created.' }

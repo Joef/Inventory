@@ -18,10 +18,9 @@
           = render(@vendor.invoices)
         %tfoot
           %tr
-            %td(colspan="6" style="text-align:center;")= link_to('Add Invoice', new_vendor_invoice_url(@vendor.id), class: "btn btn-default")
+            %td(colspan="6" style="text-align:center;")= link_to('Add Invoice', new_vendor_invoice_url(@vendor), class: "btn btn-default")
       %br
-    .links
-      = link_to 'Add Invoice', new_vendor_invoice_path(@vendor), class: "btn btn-default"
+    
      
     
   .span4
