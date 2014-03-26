@@ -4,12 +4,13 @@ class IngredientsController < ApplicationController
   # GET /ingredients
   # GET /ingredients.json
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.includes(:category).all
   end
 
   # GET /ingredients/1
   # GET /ingredients/1.json
   def show
+    
   end
 
   # GET /ingredients/new
@@ -69,6 +70,6 @@ class IngredientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredient_params
-      params.require(:ingredient).permit(:name, :category_id, :last_price)
+      params.require(:ingredient).permit(:name, :category_id, :last_price, :parent_id, :custom)
     end
 end

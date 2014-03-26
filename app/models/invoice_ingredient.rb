@@ -8,4 +8,7 @@ class InvoiceIngredient < ActiveRecord::Base
                                 
   validates :ingredient_id, :measure_id, presence: true
   validates :price, :extended, numericality: {greater_than_or_equal_to: 0.01}
+  
+  UNIT_TYPES = [ "CS", "EA", "PC", "BAG"]
+  PACK_TYPES = [ "CT", "LB", "OZ", "DZ", "GAL", "PINT", "BUNCH", "TRAY" ]
 end

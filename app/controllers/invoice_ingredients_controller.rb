@@ -69,6 +69,6 @@ class InvoiceIngredientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_ingredient_params
-      params.require(:invoice_ingredient).permit(:invoice_id, :ingredient_id, :measure_id, :quantity, :price, :extended)
+      params.require(:invoice_ingredient).permit(:invoice_id, :ingredient_id, :measure_id, :quantity_ordered, :quantity_shipped, :price, :extended, :brand, :item_number, :vendor_number, :description, :unit, :pack )
     end
 end
