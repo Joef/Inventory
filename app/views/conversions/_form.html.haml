@@ -1,0 +1,24 @@
+= form_for([@measure, @conversion]) do |f|
+  - if @conversion.errors.any? 
+    %div{:id => "error_explanation"}
+      %h2
+        =pluralize(@conversion.errors.count, "error") 
+        prohibited this conversion from being saved:
+
+      %ul
+      - @conversion.errors.full_messages.each do |msg| 
+        %li= msg
+      
+      
+  .field
+    1
+    
+    = f.collection_select :measure_a_id, Measure.all, :id, :name, {prompt: 'Select a measure'},  :disabled => true  
+  
+    Contains:
+    = f.text_field :quantity, size: 10 
+    = f.collection_select :measure_b_id, Measure.where("id != ?", @measure.id), :id, :name, prompt: 'Select a measure' 
+    = f.submit 
+  
+-if !@measure.conversions.empty?
+  = render @measure.conversions

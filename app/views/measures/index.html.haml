@@ -7,8 +7,10 @@
       %th
       %th Name
       %th Abbreviation
-      %th Vol/Wt
-      %th Eng/Metric
+      %th{:style => "border-right: 1px solid #ccc;"  } Vol
+      %th Wt
+      %th{:style => "border-right: 1px solid #ccc;"  } US
+      %th Metric
       %th
       
     
@@ -19,12 +21,13 @@
         %td
         %td= f.text_field :name 
         %td= f.text_field :abbreviation
+        %td{:style=> "text-align:center;"}= f.radio_button :volume_weight, 0
+        %td{:style=> "text-align:center;"}= f.radio_button :volume_weight, 1
+        %td{:style=> "text-align:center;"}= f.radio_button :english_metric, 0
+        %td{:style=> "text-align:center;"}= f.radio_button :english_metric, 1
         %td
-        %td
-        %td=f.submit 
+        %td=f.submit  'Create measure', :class => "btn btn-primary" 
       
 %br
-
-= link_to 'New Measure', new_measure_path, class: "btn btn-primary", role: "button" 
 
 

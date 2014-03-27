@@ -1,6 +1,7 @@
-<h1>Editing conversion</h1>
+<div class="breadcrumb">
+	<strong><%= link_to 'Measures', measures_path %></strong>: <%= @measure.name %> &gt; Conversion
+</div>
+<h1><%= @measure.name %> Conversions</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @conversion %> |
-<%= link_to 'Back', conversions_path %>

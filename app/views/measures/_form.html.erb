@@ -19,6 +19,22 @@
     <%= f.label :abbreviation %><br>
     <%= f.text_field :abbreviation %>
   </div>
+  <div class="field">
+  	<% for i in 0..1 %>
+  	<div class="radio" >
+  	  <%= f.radio_button :volume_weight,  i %>
+  	  <%= f.label :volume_weight, Measure::VOLUME_WEIGHT[i] %>
+  	</div>
+    <% end %>
+  	</div>
+  	<div class="field">
+  	<% for i in 0..1 %>
+  	<div class="radio" >
+  	<%= f.radio_button :english_metric,  i %>
+  	<%= f.label :english_metric, Measure::MEASURE_TYPE[i] %>
+  	</div>
+    <% end %>
+  	</div>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,22 +1,23 @@
 %tr{:id=> "measure_#{measure.id}"}
   %td
     %small= measure.id
-  %td= measure.name 
+  %td= link_to measure.name, edit_measure_path(measure)  
   %td= measure.abbreviation
-  %td
-  %td
+  %td{:style=> "text-align:center;"}= "X" if measure.volume_weight == 0
+  %td{:style=> "text-align:center;"}= "X" if measure.volume_weight == 1
+  %td{:style=> "text-align:center;"}= "X" if measure.english_metric == 0
+  %td{:style=> "text-align:center;"}= "X" if measure.english_metric == 1
   %td
     - if measure.conversions.length
       - measure.conversions.each do |c|
       
         %ul
           %li
-            = link_to "--> #{c.quantity}", edit_measure_conversion_path(:id => c, :measure_id => measure) 
+            = link_to "--> #{c.quantity}", edit_measure_conversion_path(measure, c) 
             = "#{c.measure_b.name} (s)" 
             = link_to 'X', [measure, c], method: :delete, data: { confirm: 'Are you sure?' } 
        
     
   %td
-    = link_to 'Add Conversion', new_measure_conversion_path(:measure_id => measure)
-    = link_to 'Edit', edit_measure_path(measure) 
+    = link_to 'Add Conversion', new_measure_conversion_path(measure), class: "btn btn-default"
     = link_to 'Destroy', measure, method: :delete, data: { confirm: 'Are you sure?' }, remote: :true  

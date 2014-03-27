@@ -1,4 +1,7 @@
-<h1>Add <%= @measure.name %> conversion</h1>
+<div class="breadcrumb">
+	<strong><%= link_to 'Measures', measures_path %></strong>: <%= link_to @measure.name, edit_measure_path(@measure) %> &gt; Conversion
+</div>
+<h1>Add conversion</h1>
 
 <%= render 'form' %>
 

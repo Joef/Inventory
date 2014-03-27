@@ -1,6 +1,8 @@
+<div class="breadcrumb">
+	<strong><%= link_to "Measures", measures_path%></strong>:
+	<%= @measure.name %>
+</div>
 <h1>Editing measure</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @measure %> |
-<%= link_to 'Back', measures_path %>

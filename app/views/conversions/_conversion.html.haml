@@ -1,8 +1,10 @@
-%ul
-  %li
-    = conversion.quantity
-    = "#{conversion.measure_b.abbreviation} (s)" 
-    = link_to 'Edit', edit_measure_conversion_path(:id => conversion, :measure_id => measure) 
-    = link_to 'X', conversion, method: :delete, data: { confirm: 'Are you sure?' } 
+-#don't include the currently edited one'
+-if !conversion.measure_b.nil? 
+  %ul
+    %li
+      = conversion.quantity
+      = "#{conversion.measure_b.abbreviation} (s)" 
+      = link_to 'Edit', edit_measure_conversion_path(@measure, conversion) 
+      = link_to 'X', [@measure, conversion], method: :delete, data: { confirm: 'Are you sure?' } 
        
     

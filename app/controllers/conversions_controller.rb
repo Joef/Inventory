@@ -21,7 +21,7 @@ class ConversionsController < ApplicationController
   # GET /conversions/new
   def new
     @conversion = @measure.conversions.new
-    @conversion.measure_a_id = params[:id]
+    @conversion.measure_a_id = @measure.id
     
   end
 
@@ -32,7 +32,7 @@ class ConversionsController < ApplicationController
   # POST /conversions
   # POST /conversions.json
   def create
-    @conversion = @measure.conversions.new(params[:conversion])
+    @conversion = @measure.conversions.new(conversion_params)
     
     
     respond_to do |format|
@@ -78,6 +78,6 @@ class ConversionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conversion_params
-      params.require(:conversion).permit(:measure_a_id, :measure_b_id, :quantity, :decimal)
+      params.require(:conversion).permit(:measure_a_id, :measure_b_id, :quantity)
     end
 end

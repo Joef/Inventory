@@ -4,7 +4,7 @@ class MeasuresController < ApplicationController
   # GET /measures
   # GET /measures.json
   def index
-    @measures = Measure.includes(:conversions).order(:name)
+    @measures = Measure.includes(:conversions).order(:id)
   end
 
   # GET /measures/1
@@ -74,6 +74,6 @@ class MeasuresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def measure_params
-      params.require(:measure).permit(:name, :abbreviation, :measure_type)
+      params.require(:measure).permit(:name, :abbreviation, :measure_type, :volume_weight, :english_metric)
     end
 end
