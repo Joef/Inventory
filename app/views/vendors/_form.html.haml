@@ -21,8 +21,7 @@
     .span8= f.text_field :address_city 
   .field.row-fluid
     .span4= f.label :address_state 
-    .span8= f.text_field :address_state 
-  
+    .span8= f.select :address_state, us_states, {prompt: 'Select'}
   .field.row-fluid
     .span4= f.label :address_postal_code 
     .span8= f.text_field :address_postal_code 

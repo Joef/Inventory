@@ -30,10 +30,15 @@
           %td(colspan="10" style="text-align:center;")= link_to_add_association('Add Line', f, :invoice_ingredients, 'data-association-insertion-node' => '#invoice_ingredients',		'data-association-insertion-method' => 'append',		:wrap_object => Proc.new {|invoice_ingredient| invoice_ingredient.build_ingredient; invoice_ingredient}, class: "btn btn-default")
    
       %tr.header
-        %th Ingredients
-        %th(style="width: 10%") Qty Ord
-        %th(style="width: 10%") Qty Ship
         %th Vendor No.
+        %th Ingredients
+        %th(style="width: 10%; text-align:center;") 
+          Qty 
+          %br Ord
+        %th(style="width: 10%; text-align:center;") 
+          Qty 
+        
+          %br Ship
         %th Unit
         %th Brand
         %th Desc
@@ -43,7 +48,7 @@
         %th{:style => "border-right: 1px solid #ccc;"  } Unit
         %th(style="width: 10%") Price
         %th(style="width: 10%") Ext
-        %th 
+        %th &nbsp;
         
     
         = f.fields_for :invoice_ingredients do |invoice_ingredient| 

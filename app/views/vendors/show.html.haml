@@ -1,8 +1,11 @@
 .row-fluid
   .span8
-    %h1= @vendor.name
-    
-    %h5 
+    %h1(style="display:inline;")= @vendor.name
+    %span.small
+      [
+      = link_to 'Edit', edit_vendor_path(@vendor)
+      ]
+    %h3 
       Invoices
        
     %table.table.table-hover.table-striped
@@ -26,22 +29,22 @@
     
   .span4
     %span.small= @this_year
-    %h1= number_to_currency @vendor.total_spend(@this_year)
+    %h1(style="margin-top:0;")= number_to_currency @vendor.total_spend(@this_year)
     %span.small= @this_year - 1
-    %h1= number_to_currency @vendor.total_spend(@this_year - 1)
+    %h1(style="margin-top:0;")= number_to_currency @vendor.total_spend(@this_year - 1)
     %h5 Address
     = @vendor.address_1 
     
-    -if @vendor.address_2
+    -if !@vendor.address_2.empty?
       %br
       = @vendor.address_2
     %br
     = @vendor.address_city  
-    ,
+    = "," if !@vendor.address_city.empty? and !@vendor.address_state.empty?
     = @vendor.address_state 
     = @vendor.address_postal_code 
-    .links
-      = link_to 'Edit', edit_vendor_path(@vendor), class: "btn btn-default"
+   
+      
 .row-fluid
   .span8
     

@@ -18,20 +18,34 @@
 //= require bootstrap
 //= require jquery.ui.all
 
-(function($) {
-        $.fn.currencyFormat = function() {
-            this.each( function( i ) {
-                $(this).load( function( e ){
-                    if( isNaN( parseFloat( this.value ) ) ) return;
-                    this.value = parseFloat(this.value).toFixed(2);
-                });
-                
-            });
-            return this; //for chaining
-        }
-    })( jQuery );
+
 
 $(function(){
   $('.datepicker').datepicker({ dateFormat: "yy-mm-dd" });
-  $('.currency').currencyFormat();
+  //$('.currency').currencyFormat();
+  
+  //$('body').on('keyup','input', function(e){
+  fields = $('.grid');	
+  $('.grid').keyup(function(e){
+  	
+  	if(e.which == 39) //right
+  	{
+  		
+  		console.log(fields.next());
+  		
+  	}
+  	if(e.which == 37) //left
+  	{
+  		
+  		
+  	}
+  	if(e.which == 40) //down
+  	{
+  		
+  	}
+  	if(e.which == 38) //up
+  	{
+  		
+  	}
+  });
 });

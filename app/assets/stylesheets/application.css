@@ -75,4 +75,7 @@ th.price
 {
 	text-align: right;	
 }
-
+.inline
+{
+	display:inline;
+}
