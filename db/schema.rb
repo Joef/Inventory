@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140325150714) do
+ActiveRecord::Schema.define(version: 20140328191650) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20140325150714) do
     t.text     "description"
     t.string   "unit"
     t.decimal  "pack"
+    t.decimal  "pack_qty"
+    t.decimal  "pack_size"
   end
 
   create_table "invoices", force: true do |t|

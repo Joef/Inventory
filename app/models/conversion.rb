@@ -5,4 +5,11 @@ class Conversion < ActiveRecord::Base
   validates       :measure_a, :measure_b, presence: true;
   validates       :quantity, numericality: {greater_than_or_equal_to: 0.001}
   
+  def get_smallest(id)
+    c = Conversion.find(id)
+    if(!c.measure_b.nil?)
+      return 60
+    end
+  end
+  
 end

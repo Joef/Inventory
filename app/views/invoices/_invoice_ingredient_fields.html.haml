@@ -1,13 +1,18 @@
 %tr.nested-fields
   %td
-    = f.collection_select :ingredient_id, Ingredient.all, :id, :name, prompt: 'Select an ingredient'
+    = f.collection_select :ingredient_id, Ingredient.all, :id, :name, {prompt: '...'}, {style: "width: 180px"}
     /=link_to "add", new_ingredient_path, :role => "button", :class => "btn", "data-toggle"=>"modal", "data-target"=>"#modal", "data-keyboard"=>"true"
   
   %td= f.text_field :qty_ordered, style: "width: 40px"
   %td= f.text_field :qty_shipped, style: "width: 40px" 
-  %td= f.select :unit, InvoiceIngredient::UNIT_TYPES, {prompt: '...'}, {style: "width: 60px"} 
-  %td= f.text_field :description
-  %td= f.collection_select :measure_id, Measure.all, :id, :abbreviation, {prompt: 'Select a measure'}, {style: "width: 60px"}
+  %td= f.text_field :vendor_number, style: "width: 60px" 
+  
+  %td= f.select :unit, InvoiceIngredient::UNIT_TYPES, {prompt: '...'}, {style: "width: 70px"} 
+  %td= f.text_field :brand, style: "width: 80px"
+  %td(colspan="2")= f.text_field :description, style: "width: 150px" 
+  %td= f.text_field :pack_qty, style: "width: 40px" 
+  %td= f.text_field :pack_size, style: "width: 40px" 
+  %td= f.collection_select :measure_id, Measure.all, :id, :abbreviation, {prompt: '...'}, {style: "width: 60px"}
   /%td= f.select :pack, InvoiceIngredient::PACK_TYPES, prompt: '...' 
   %td= f.text_field :price,  style: "width: 50px" , class: "currency"
   %td= f.text_field :extended,  style: "width: 50px", class: "currency" 

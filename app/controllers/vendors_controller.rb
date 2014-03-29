@@ -10,6 +10,8 @@ class VendorsController < ApplicationController
   # GET /vendors/1
   # GET /vendors/1.json
   def show
+    @this_year = Time.now.year
+    @last_year = @this_year - 1
   end
 
   # GET /vendors/new

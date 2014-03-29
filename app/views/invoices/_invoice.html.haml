@@ -1,7 +1,7 @@
 %tr
   %td
     %small= invoice.id
-  %td= invoice.number
+  %td= link_to invoice.number, [@vendor, invoice]
   %td= invoice.invoice_date
   %td= number_to_currency(invoice.total)
   %td= link_to 'Edit', edit_vendor_invoice_url(vendor_id: invoice.vendor_id, id: invoice.id), class: "btn btn-default" 

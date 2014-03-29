@@ -1,5 +1,6 @@
 class InvoiceIngredientsController < ApplicationController
   before_action :set_invoice_ingredient, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /invoice_ingredients
   # GET /invoice_ingredients.json

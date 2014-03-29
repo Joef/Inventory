@@ -62,7 +62,7 @@ class InvoicesController < ApplicationController
     
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to vendor_path(@invoice.vendor), method: :show, notice: "Invoice #{@invoice.number} was successfully updated." }
+        format.html { redirect_to [@vendor, @invoice], method: :show, notice: "Invoice #{@invoice.number} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -96,7 +96,7 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:id, :number, :invoice_date, :vendor_id, invoice_ingredients_attributes: [:id, :qty_ordered, :qty_shipped, :unit, :description, :pack, :invoice_id, :ingredient_id, :measure_id, :price, :extended, :_destroy])
+      params.require(:invoice).permit(:id, :number, :invoice_date, :vendor_id, invoice_ingredients_attributes: [:id, :qty_ordered, :qty_shipped, :unit, :description, :pack, :pack_qty, :pack_size, :invoice_id, :ingredient_id, :measure_id, :price, :extended, :vendor_number, :brand, :_destroy])
     end
     
     

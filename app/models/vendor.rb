@@ -5,9 +5,11 @@ class Vendor < ActiveRecord::Base
   
   accepts_nested_attributes_for :invoices
   
-  def total_spend
-    year = Time.now.year 
-    self.invoices.where(['invoice_date > ?', year]).sum('total')
+  #scope :this_year where 
+  
+  def total_spend(year=nil)
+    year = Time.now.year-1  if year.nil?
+    self.invoices.where(['invoice_date > "?-01-01" AND invoice_date < "?-01-01"', year, year+1]).sum('total')
   end
   def last_invoice
     

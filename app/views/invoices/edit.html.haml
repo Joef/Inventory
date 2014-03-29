@@ -1,0 +1,12 @@
+.breadcrumb
+  Vendor: 
+  = link_to @vendor.name, @vendor 
+  &raquo;
+  = link_to @invoice.number, [@vendor, @invoice]
+  
+
+%h1 Editing invoice 
+
+= render 'form' 
+
+= link_to 'Show', [@vendor, @invoice] 

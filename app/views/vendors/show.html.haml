@@ -1,12 +1,13 @@
 .row-fluid
   .span8
     %h1= @vendor.name
-    - if @vendor.invoices.length > 0 
-      %h5 
-        Invoices
-        
-      %table.table.table-hover.table-striped
-        %thead
+    
+    %h5 
+      Invoices
+       
+    %table.table.table-hover.table-striped
+      %thead
+        - if @vendor.invoices.length > 0 
           %tr
           %th
           %th Number 
@@ -24,6 +25,10 @@
      
     
   .span4
+    %span.small= @this_year
+    %h1= number_to_currency @vendor.total_spend(@this_year)
+    %span.small= @this_year - 1
+    %h1= number_to_currency @vendor.total_spend(@this_year - 1)
     %h5 Address
     = @vendor.address_1 
     
