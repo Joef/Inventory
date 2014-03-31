@@ -1,0 +1,11 @@
+%tr.nested-fields
+  %td
+    = link_to recipe_ingredient.ingredient.name, recipe_ingredient.ingredient
+    
+  %td= recipe_ingredient.quantity
+  
+  %td
+    = recipe_ingredient.measure.abbreviation
+    (s)
+  %td.price= number_to_currency recipe_ingredient.cost
+  %td.price= number_to_currency recipe_ingredient.total_cost

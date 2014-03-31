@@ -1,0 +1,18 @@
+%tr.nested-fields
+  %td= invoice_ingredient.vendor_number
+  %td= link_to invoice_ingredient.ingredient.name, invoice_ingredient.ingredient
+    
+  %td= invoice_ingredient.qty_ordered
+  %td= invoice_ingredient.qty_shipped 
+  
+  %td= InvoiceIngredient::UNIT_TYPES[invoice_ingredient.unit.to_i]
+  %td= invoice_ingredient.brand
+  %td= invoice_ingredient.description
+  
+  %td
+    = invoice_ingredient.pack_qty * invoice_ingredient.pack_size if !invoice_ingredient.pack_qty.nil? and !invoice_ingredient.pack_size.nil?
+    
+    = invoice_ingredient.measure.abbreviation
+    (s)
+  %td.price= number_to_currency invoice_ingredient.price
+  %td.price= number_to_currency invoice_ingredient.extended

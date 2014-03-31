@@ -1,0 +1,38 @@
+= form_for(@recipe) do |f| 
+  - if @recipe.errors.any? 
+    %div(id="error_explanation")
+      %h2
+        = pluralize(@recipe.errors.count, "error") 
+        prohibited this recipe from being saved:
+
+      %ul
+      - @recipe.errors.full_messages.each do |msg| 
+        %li= msg
+      
+      
+  .field
+    = f.label :title 
+    = f.text_field :title 
+  
+  .row-fluid.span12.line_items
+    %table#recipe_ingredients.table.table-striped
+      %tfoot
+        %tr
+          %td(colspan="10" style="text-align:center;")= link_to_add_association('Add Item', f, :recipe_ingredients, 'data-association-insertion-node' => '#recipe_ingredients',   'data-association-insertion-method' => 'append',    :wrap_object => Proc.new {|recipe_ingredient| recipe_ingredient.build_ingredient; recipe_ingredient}, class: "btn btn-default")
+   
+      %tr.header
+        %th Ingredients
+        %th(style="width: 10%") Quantity
+        
+        %th{:style => "border-right: 1px solid #ccc;"  } Unit
+        %th(style="width: 10%") Unit Cost
+        %th(style="width: 10%") Total Cost
+        %th 
+        
+    
+        = f.fields_for :recipe_ingredients do |recipe_ingredient| 
+          = render 'recipe_ingredient_fields', f: recipe_ingredient 
+    
+  .actions
+    = f.submit 
+  

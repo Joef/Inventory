@@ -1,0 +1,29 @@
+.breadcrumb
+  = link_to 'Recipes', recipes_path 
+  \:
+  %strong= @recipe.title 
+
+%h1(style="display:inline")= @recipe.title
+%span.small 
+  [
+  = link_to 'Edit', edit_recipe_path(@recipe)
+  ]  
+.clear
+
+
+.row-fluid.span12.line_items
+  %table.table.table-striped
+    %tfoot
+      %th{:colspan => "4", :style => "text-align:right; font-weight:bold;"} TOTAL
+      %th.price= number_to_currency @recipe.cost 
+    %tr.header
+      %th Ingredients
+      %th(style="width: 10%") Qty
+      %th Unit
+      %th.price(style="width: 10%") Price
+      %th.price(style="width: 10%") Cost
+     
+    = render @recipe.recipe_ingredients
+  
+ 
+

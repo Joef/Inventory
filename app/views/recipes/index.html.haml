@@ -1,0 +1,26 @@
+%h1 Listing recipes
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Title
+      %th Price
+      %th 
+      %th 
+      %th 
+
+  %tbody
+    - @recipes.each do |recipe| 
+      %tr
+        %td
+          = link_to recipe.title, recipe
+          %span.small
+            [
+            = link_to 'Edit', edit_recipe_path(recipe)
+            ]  
+        %td= number_to_currency recipe.cost 
+        %td 
+        %td
+        %td= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } 
+      
+= link_to 'New Recipe', new_recipe_path, class: 'btn btn-primary'
