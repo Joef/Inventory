@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140329140550) do
+ActiveRecord::Schema.define(version: 20140403025544) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140329140550) do
     t.datetime "updated_at"
     t.integer  "parent_id"
     t.integer  "custom"
+    t.integer  "measure_id"
   end
 
   create_table "invoice_ingredients", force: true do |t|
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 20140329140550) do
     t.decimal  "pack"
     t.decimal  "pack_qty"
     t.decimal  "pack_size"
+    t.integer  "cost_basis"
   end
 
   create_table "invoices", force: true do |t|
@@ -91,11 +93,8 @@ ActiveRecord::Schema.define(version: 20140329140550) do
 
   create_table "recipe_ingredients", force: true do |t|
     t.integer  "recipe_id"
-    t.integer  "menu_item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "cost"
-    t.decimal  "total_cost"
     t.decimal  "quantity"
     t.integer  "ingredient_id"
     t.integer  "measure_id"
@@ -103,10 +102,12 @@ ActiveRecord::Schema.define(version: 20140329140550) do
 
   create_table "recipes", force: true do |t|
     t.string   "title"
-    t.decimal  "cost"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "parent_id"
+    t.decimal  "serving_quantity"
+    t.decimal  "serving_size"
+    t.decimal  "serving_measure_id"
   end
 
   create_table "vendors", force: true do |t|

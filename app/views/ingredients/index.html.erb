@@ -1,6 +1,6 @@
-<h1>Listing ingredients</h1>
+<h1>Ingredients</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -17,7 +17,7 @@
       <tr>
         <td><%= link_to ingredient.name, ingredient %></td>
         <td><%= link_to ingredient.category.name, ingredient.category if !ingredient.category.nil? %></td>
-        
+        <td><%= number_to_currency ingredient.last_price %></td>
         <td><%= link_to 'Edit', edit_ingredient_path(ingredient) if ingredient.custom? %></td>
         <td><%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } if ingredient.custom? %></td>
       </tr>

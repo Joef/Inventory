@@ -1,3 +1,4 @@
+- javascript 'invoices' 
 = form_for([@vendor, @invoice]) do |f| 
   - if @invoice.errors.any? 
     .alert.alert-danger.fade.in
@@ -27,14 +28,17 @@
     %table#invoice_ingredients.table.table-striped
       %tfoot
         %tr
-          %td(colspan="10" style="text-align:center;")= link_to_add_association('Add Line', f, :invoice_ingredients, 'data-association-insertion-node' => '#invoice_ingredients',		'data-association-insertion-method' => 'append',		:wrap_object => Proc.new {|invoice_ingredient| invoice_ingredient.build_ingredient; invoice_ingredient}, class: "btn btn-default")
+          %td.price(colspan="13" style="text-align:right;padding-top: 13px;font-weight:bold;") TOTAL $
+          %td= f.text_field :total, style: "width: 50px", disabled: true
+          %td
+        %tr
+          %td(colspan="15" style="text-align:center;")= link_to_add_association('Add Line', f, :invoice_ingredients, 'data-association-insertion-node' => '#invoice_ingredients',		'data-association-insertion-method' => 'append',		:wrap_object => Proc.new {|invoice_ingredient| invoice_ingredient.build_ingredient; invoice_ingredient}, class: "btn btn-default")
    
       %tr.header
         %th Vendor No.
         %th Ingredients
-        %th(style="width: 10%; text-align:center;") 
-          Qty 
-          %br Ord
+        
+        %th
         %th(style="width: 10%; text-align:center;") 
           Qty 
         
@@ -42,13 +46,16 @@
         %th Unit
         %th Brand
         %th Desc
+        
         %th{:style => "border-right: 1px solid #ccc;text-align:right;"  } Pack:
+        
         %th Qty
+        %th
         %th Size
         %th{:style => "border-right: 1px solid #ccc;"  } Unit
         %th(style="width: 10%") Price
         %th(style="width: 10%") Ext
-        %th &nbsp;
+        %th
         
     
         = f.fields_for :invoice_ingredients do |invoice_ingredient| 

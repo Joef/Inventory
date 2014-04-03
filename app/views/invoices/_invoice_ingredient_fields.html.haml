@@ -1,19 +1,23 @@
 %tr.nested-fields
-  %td= f.text_field :vendor_number, style: "width: 60px", class: 'grid' 
+  %td= f.text_field :vendor_number, style: "width: 60px", class: 'grid vendor_number' 
   %td
-    = f.collection_select :ingredient_id, Ingredient.all, :id, :name, {prompt: '...'}, {style: "width: 180px", class: 'grid' }
+    - #for autocomplete, textfield plus hidden field
+    = f.text_field :ingredient_name, class: 'grid ingredient_name', style: "width: 150px"
+    = f.hidden_field :ingredient_id 
     /=link_to "add", new_ingredient_path, :role => "button", :class => "btn", "data-toggle"=>"modal", "data-target"=>"#modal", "data-keyboard"=>"true"
   
-  %td= f.text_field :qty_ordered, style: "width: 40px", class: 'grid'
-  %td= f.text_field :qty_shipped, style: "width: 40px", class: 'grid' 
+  
+  %td= f.radio_button :cost_basis, 0, class: 'cost_basis'
+  %td= f.text_field :qty_shipped, style: "width: 25px", class: 'grid cost' 
  
-  %td= f.select :unit, InvoiceIngredient::UNIT_TYPES, {prompt: '...'}, {style: "width: 70px", class: 'grid'  }
-  %td= f.text_field :brand, style: "width: 80px", class: 'grid'
-  %td(colspan="2")= f.text_field :description, style: "width: 150px", class: 'grid'  
-  %td= f.text_field :pack_qty, style: "width: 40px", class: 'grid'
-  %td= f.text_field :pack_size, style: "width: 40px", class: 'grid' 
+  %td= f.select :unit, InvoiceIngredient::UNIT_TYPES, {prompt: '...'}, {style: "width: 60px", class: 'grid'  }
+  %td= f.text_field :brand, style: "width: 60px", class: 'grid'
+  %td(colspan="2")= f.text_field :description, style: "width: 140px", class: 'grid'  
+  %td= f.text_field :pack_qty, style: "width: 25px", class: 'grid cost'
+  %td= f.radio_button :cost_basis, 1, class: 'cost_basis'
+  %td= f.text_field :pack_size, style: "width: 40px", class: 'grid cost' 
   %td= f.collection_select :measure_id, Measure.all, :id, :abbreviation, {prompt: '...'}, {style: "width: 60px", class: 'grid'} 
   /%td= f.select :pack, InvoiceIngredient::PACK_TYPES, prompt: '...' 
-  %td= f.text_field :price,  style: "width: 50px" , class: "currency", class: 'grid'
-  %td= f.text_field :extended,  style: "width: 50px", class: "currency", class: 'grid' 
+  %td= f.text_field :price,  style: "width: 50px" , class: "currency", class: 'grid cost'
+  %td= f.text_field :extended,  style: "width: 50px", class: "currency", class: 'grid cost total' 
   %td= link_to_remove_association 'Remove', f, :role=>"button", :class=>"btn btn-default" 

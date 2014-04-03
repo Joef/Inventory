@@ -12,6 +12,9 @@ class VendorsController < ApplicationController
   def show
     @this_year = Time.now.year
     @last_year = @this_year - 1
+    @invoices = @vendor.invoices.order(invoice_date: :desc)
+    
+    
   end
 
   # GET /vendors/new

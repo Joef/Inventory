@@ -16,4 +16,14 @@ class Vendor < ActiveRecord::Base
      self.invoices.order('invoice_date DESC').first
    
   end
+  def not_nil_and_empty(obj)
+    !obj.nil? && !obj.empty?
+  end
+  def format_address
+    str = address_1                   if not_nil_and_empty address_1
+    str += ", " + address_2           if not_nil_and_empty address_2
+    str += ", " + address_city        if not_nil_and_empty address_city
+    str += ", " + address_state       if not_nil_and_empty address_state
+    str += " "  + address_postal_code if not_nil_and_empty address_postal_code
+  end
 end

@@ -4,9 +4,9 @@
   %thead
     %tr
       %th Title
-      %th Price
-      %th 
-      %th 
+      %th Raw Ingredients
+      %th Sub-recipes
+      %th Total Cost
       %th 
 
   %tbody
@@ -18,7 +18,7 @@
             [
             = link_to 'Edit', edit_recipe_path(recipe)
             ]  
-        %td= number_to_currency recipe.cost 
+        %td= number_to_currency recipe.ingredient_cost, precision: 3 
         %td 
         %td
         %td= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } 

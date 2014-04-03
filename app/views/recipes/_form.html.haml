@@ -1,3 +1,4 @@
+- javascript 'recipes' 
 = form_for(@recipe) do |f| 
   - if @recipe.errors.any? 
     %div(id="error_explanation")
@@ -8,15 +9,27 @@
       %ul
       - @recipe.errors.full_messages.each do |msg| 
         %li= msg
-      
-      
-  .field
-    = f.label :title 
-    = f.text_field :title 
+     
+  .row-fluid
+    .span6
+      .field
+        = f.label :title 
+        = f.text_field :title
+    .span6
+      .field
+        %label Serving Size 
+        = f.text_field :serving_quantity, style: "width: 40px" 
+        %small servings @
+        = f.text_field :serving_size, style: "width: 40px" 
+        = f.collection_select :serving_measure_id, Measure.all, :id, :abbreviation, {prompt: '...'}, {style: "width: 60px", class: 'grid'} 
+        %small per serving
+        %br
+        %small yield / size / unit
   
   .row-fluid.span12.line_items
     %table#recipe_ingredients.table.table-striped
       %tfoot
+        
         %tr
           %td(colspan="10" style="text-align:center;")= link_to_add_association('Add Item', f, :recipe_ingredients, 'data-association-insertion-node' => '#recipe_ingredients',   'data-association-insertion-method' => 'append',    :wrap_object => Proc.new {|recipe_ingredient| recipe_ingredient.build_ingredient; recipe_ingredient}, class: "btn btn-default")
    
@@ -24,7 +37,8 @@
         %th Ingredients
         %th(style="width: 10%") Quantity
         
-        %th{:style => "border-right: 1px solid #ccc;"  } Unit
+        %th Unit
+        %th{:style => "border-right: 1px solid #ccc;"  }
         %th(style="width: 10%") Unit Cost
         %th(style="width: 10%") Total Cost
         %th 

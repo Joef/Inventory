@@ -12,40 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
 //= require cocoon
 //= require bootstrap
 //= require jquery.ui.all
 
-
-
-$(function(){
-  $('.datepicker').datepicker({ dateFormat: "yy-mm-dd" });
-  //$('.currency').currencyFormat();
-  
-  //$('body').on('keyup','input', function(e){
-  fields = $('.grid');	
-  $('.grid').keyup(function(e){
-  	
-  	if(e.which == 39) //right
-  	{
-  		
-  		console.log(fields.next());
-  		
-  	}
-  	if(e.which == 37) //left
-  	{
-  		
-  		
-  	}
-  	if(e.which == 40) //down
-  	{
-  		
-  	}
-  	if(e.which == 38) //up
-  	{
-  		
-  	}
-  });
-});

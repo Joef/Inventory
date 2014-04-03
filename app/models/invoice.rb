@@ -11,7 +11,7 @@ class Invoice < ActiveRecord::Base
     accepts_nested_attributes_for :ingredients
     
     before_save :calculate_total_price
-    
+    before_save :update_last_price
                                     
     def total_price 
       invoice_ingredients.to_a.sum{|invoice_ingredient| invoice_ingredient.extended}
@@ -19,5 +19,10 @@ class Invoice < ActiveRecord::Base
     end
     def calculate_total_price
       self.total = total_price
+    end
+    def update_last_price
+      invoice_ingredients.each do |ii|
+        ii.update_last_price
+      end
     end
 end

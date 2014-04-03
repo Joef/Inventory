@@ -9,7 +9,7 @@ class Recipe < ActiveRecord::Base
   
   before_save :calculate_total_price
   
-  def total_price 
+  def ingredient_cost 
       recipe_ingredients.to_a.sum{|recipe_ingredient| recipe_ingredient.total_cost}
       
     end

@@ -4,13 +4,17 @@ class IngredientsController < ApplicationController
   # GET /ingredients
   # GET /ingredients.json
   def index
-    @ingredients = Ingredient.includes(:category).all
+    if params[:term]
+      @ingredients = Ingredient.find(:all,:conditions => ['name LIKE ?', "%#{params[:term]}%"])
+    else 
+      @ingredients = Ingredient.includes(:category).all
+    end
   end
 
   # GET /ingredients/1
   # GET /ingredients/1.json
   def show
-    
+    @invoice_ingredients = @ingredient.invoice_ingredients.includes(:invoice, :measure).all
   end
 
   # GET /ingredients/new

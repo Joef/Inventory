@@ -1,11 +1,13 @@
 %tr.nested-fields
   %td
-    = f.collection_select :ingredient_id, Ingredient.all, :id, :name, {prompt: '...'}, {style: "width: 180px", class: 'grid' }
+    = f.text_field :ingredient_name, class: 'grid ingredient_name'
+    = f.hidden_field :ingredient_id 
+   
     /=link_to "add", new_ingredient_path, :role => "button", :class => "btn", "data-toggle"=>"modal", "data-target"=>"#modal", "data-keyboard"=>"true"
   
-  %td= f.text_field :quantity, style: "width: 40px", class: 'grid'
+  %td= f.text_field :quantity, style: "width: 40px", class: 'grid cost'
   %td= f.collection_select :measure_id, Measure.all, :id, :abbreviation, {prompt: '...'}, {style: "width: 60px", class: 'grid'} 
-  
-  %td= f.text_field :cost,  style: "width: 50px" , class: "currency", class: 'grid'
-  %td= f.text_field :total_cost,  style: "width: 50px", class: "currency", class: 'grid' 
-  -# link_to_remove_association 'Remove', f, :role=>"button", :class=>"btn btn-default" 
+  %td
+  %td
+  %td
+  %td=link_to_remove_association 'Remove', f, :role=>"button", :class=>"btn btn-default" 

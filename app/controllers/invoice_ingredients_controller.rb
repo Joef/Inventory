@@ -5,7 +5,12 @@ class InvoiceIngredientsController < ApplicationController
   # GET /invoice_ingredients
   # GET /invoice_ingredients.json
   def index
-    @invoice_ingredients = InvoiceIngredient.all
+    if params[:term]
+      @invoice_ingredients = InvoiceIngredient.find(:all,:conditions => ['vendor_number LIKE ?', "%#{params[:term]}%"])
+    else 
+      @invoice_ingredients = InvoiceIngredient.all
+    end
+    
   end
 
   # GET /invoice_ingredients/1

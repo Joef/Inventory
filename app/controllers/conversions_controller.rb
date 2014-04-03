@@ -10,7 +10,13 @@ class ConversionsController < ApplicationController
   # GET /conversions
   # GET /conversions.json
   def index
-    @conversions = @measure.conversions
+    if params[:to_id]
+      @conversions = @measure.conversions.where(measure_b_id: params[:to_id])
+      #if conversions.empty?
+      #try to find a path for the conversion
+    else
+      @conversions = @measure.conversions
+    end
   end
 
   # GET /conversions/1

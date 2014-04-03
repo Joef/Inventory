@@ -17,12 +17,14 @@
 .row-fluid.span12.line_items
   %table#invoice_ingredients.table.table-striped
     %tfoot
-      %th{:colspan => "9", :style => "text-align:right; font-weight:bold;"} TOTAL
+      %th{:colspan => "8", :style => "text-align:right; font-weight:bold;"} TOTAL
       %th.price= number_to_currency @invoice.total
+      %th
+      %th
     %tr.header
       %th Vendor No.
       %th Ingredients
-      %th(style="width: 10%") Qty Ord
+      
       %th(style="width: 10%") Qty Ship
       
       %th Unit
@@ -31,8 +33,8 @@
       
       %th Pack
       %th.price(style="width: 10%") Price
-      %th.price(style="width: 10%") Ext
-     
+      %th.price(style="width: 10%;border-right:1px solid #ccc") Ext
+      %th{:colspan=>"2", :style=>"text-align:center;"} Price EA
     = render @invoice.invoice_ingredients
   = link_to 'Add New Invoice', new_vendor_invoice_path(@vendor), class: 'btn btn-default'
 

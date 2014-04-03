@@ -9,10 +9,15 @@ class Ingredient < ActiveRecord::Base
               foreign_key: "parent_id" 
   
   belongs_to  :category
-  
+  belongs_to  :measure
   
   
   def self.order_by_category
     {:joins => "left join categories as c on c.id = ingredients.category_id",    :order => "c.name"}
+  end
+  
+  def get_conversion(m_id)
+    conversion = self.measure.conversions.where(measure_b_id: m_id).first
+    return conversion.quantity if conversion
   end
 end

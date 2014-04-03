@@ -11,19 +11,21 @@
 .clear
 
 
-.row-fluid.span12.line_items
-  %table.table.table-striped
-    %tfoot
-      %th{:colspan => "4", :style => "text-align:right; font-weight:bold;"} TOTAL
-      %th.price= number_to_currency @recipe.cost 
-    %tr.header
-      %th Ingredients
-      %th(style="width: 10%") Qty
-      %th Unit
-      %th.price(style="width: 10%") Price
-      %th.price(style="width: 10%") Cost
+.row-fluid
+  .span6.line_items
+    %table.table.table-striped
+      %tfoot
+        %th{:colspan => "4", :style => "text-align:right; font-weight:bold;"} TOTAL
+        %th.price= number_to_currency @recipe.ingredient_cost, precision: 3 
+      %tr.header
+        %th Raw Ingredients
+        %th Qty
+        %th(style="border-left: 3px double #ccc") 
+        %th Unit
+        %th.price Price
+       
      
-    = render @recipe.recipe_ingredients
+      = render @recipe.recipe_ingredients
   
  
 

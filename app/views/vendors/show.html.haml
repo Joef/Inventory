@@ -1,7 +1,13 @@
 .row-fluid
   .span8
-    %h1(style="display:inline;")= @vendor.name
-    %span.small
+    %h2
+      = @vendor.name
+      %br
+      %small
+        = @vendor.format_address 
+      
+       
+    %small
       [
       = link_to 'Edit', edit_vendor_path(@vendor)
       ]
@@ -19,41 +25,42 @@
           %th
           %th
         %tbody
-          = render(@vendor.invoices)
+          = render(@invoices)
         %tfoot
           %tr
             %td(colspan="6" style="text-align:center;")= link_to('Add Invoice', new_vendor_invoice_url(@vendor), class: "btn btn-default")
       %br
-    
-     
+
     
   .span4
-    %span.small= @this_year
+    %small= @this_year
     %h1(style="margin-top:0;")= number_to_currency @vendor.total_spend(@this_year)
-    %span.small= @this_year - 1
+    %small= @this_year - 1
     %h1(style="margin-top:0;")= number_to_currency @vendor.total_spend(@this_year - 1)
-    %h5 Address
-    = @vendor.address_1 
     
-    -if !@vendor.address_2.empty?
-      %br
-      = @vendor.address_2
-    %br
-    = @vendor.address_city  
-    = "," if !@vendor.address_city.empty? and !@vendor.address_state.empty?
-    = @vendor.address_state 
-    = @vendor.address_postal_code 
-   
+    %h3 Price List 
+    .well
+      %p
+        Need a large join statement to pull all the products from this vendor
+    %table.table
+      %tr  
+        %td Asparagus
+        %td $3.25 / lb
+      %tr  
+        %td Celery
+        %td $1.73 / cnt
+      %tr  
+        %td Beet, Golden
+        %td  $2.70 / lb
+      %tr  
+        %td Potato, Fingerling
+        %td $2.33 / lb
       
-.row-fluid
-  .span8
-    
-    
-        
-    .field.row-fluid
-      .span12
-        
-  .span4
+            
+      
+      
+      
+
       
 
       
