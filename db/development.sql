@@ -1,5 +1,4 @@
-PRAGMA foreign_keys=OFF;
-BEGIN TRANSACTION;
+
 CREATE TABLE "conversions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "measure_a_id" integer, "measure_b_id" integer, "created_at" datetime, "updated_at" datetime, "quantity" decimal(8,2));
 INSERT INTO "conversions" VALUES(1,1,2,'2014-03-28 15:55:21.548529','2014-03-28 15:55:21.548529',4);
 INSERT INTO "conversions" VALUES(2,1,3,'2014-03-28 15:55:21.565826','2014-03-28 15:55:21.565826',8);

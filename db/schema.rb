@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403025544) do
+ActiveRecord::Schema.define(version: 20140406165803) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20140403025544) do
     t.integer  "parent_id"
     t.decimal  "serving_quantity"
     t.decimal  "serving_size"
-    t.decimal  "serving_measure_id"
+    t.decimal  "measure_id"
   end
 
   create_table "vendors", force: true do |t|

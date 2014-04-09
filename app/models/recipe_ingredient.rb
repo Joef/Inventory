@@ -4,15 +4,23 @@ class RecipeIngredient < ActiveRecord::Base
   belongs_to  :ingredient
   
   def unit_price
+    if self.ingredient.measure_id
     if self.ingredient.measure_id != self.measure_id
       ratio = self.ingredient.get_conversion(self.measure_id)
     else
       ratio = 1
     end
     self.ingredient.last_price/ratio
+    else
+    0
+    end
   end
   def total_cost
-    self.unit_price * self.quantity
+    if(self.unit_price && self.quantity)
+      self.unit_price * self.quantity
+    else
+      0
+    end
   end
   
   

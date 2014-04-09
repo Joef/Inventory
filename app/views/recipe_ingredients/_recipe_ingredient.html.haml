@@ -7,10 +7,14 @@
     = recipe_ingredient.measure.abbreviation
     (s)
   %td{style: "border-left: 3px double #ccc"}
-    @
-    = number_to_currency recipe_ingredient.ingredient.last_price  
-    \/
-    = recipe_ingredient.ingredient.measure.abbreviation
+    - if recipe_ingredient.ingredient.last_price != 0.00
+      @
+      = number_to_currency recipe_ingredient.ingredient.last_price   
+      \/
+      = recipe_ingredient.ingredient.measure.abbreviation if !recipe_ingredient.ingredient.measure.nil?
+    - else
+      N/A
+    
   %td
     \=
     = number_to_currency recipe_ingredient.unit_price, precision: 3

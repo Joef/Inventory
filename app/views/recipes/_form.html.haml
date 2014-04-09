@@ -11,42 +11,52 @@
         %li= msg
      
   .row-fluid
-    .span6
+    .span8
       .field
         = f.label :title 
         = f.text_field :title
-    .span6
+    .span4
       .field
         %label Serving Size 
         = f.text_field :serving_quantity, style: "width: 40px" 
         %small servings @
         = f.text_field :serving_size, style: "width: 40px" 
-        = f.collection_select :serving_measure_id, Measure.all, :id, :abbreviation, {prompt: '...'}, {style: "width: 60px", class: 'grid'} 
+        = f.collection_select :measure_id, Measure.all, :id, :abbreviation, {prompt: '...'}, {style: "width: 60px", class: 'grid'} 
         %small per serving
         %br
         %small yield / size / unit
   
-  .row-fluid.span12.line_items
-    %table#recipe_ingredients.table.table-striped
-      %tfoot
-        
-        %tr
-          %td(colspan="10" style="text-align:center;")= link_to_add_association('Add Item', f, :recipe_ingredients, 'data-association-insertion-node' => '#recipe_ingredients',   'data-association-insertion-method' => 'append',    :wrap_object => Proc.new {|recipe_ingredient| recipe_ingredient.build_ingredient; recipe_ingredient}, class: "btn btn-default")
+  .row-fluid
+    .span8
+      %table#recipe_ingredients.table.table-striped
+        %tfoot
+         
+          %tr
+            %td(colspan="5" style="text-align:center;")= link_to_add_association('Add Item', f, :recipe_ingredients, 'data-association-insertion-node' => '#recipe_ingredients',   'data-association-insertion-method' => 'append',    :wrap_object => Proc.new {|recipe_ingredient| recipe_ingredient.build_ingredient; recipe_ingredient}, class: "btn btn-default")
    
-      %tr.header
-        %th Ingredients
-        %th(style="width: 10%") Quantity
-        
-        %th Unit
-        %th{:style => "border-right: 1px solid #ccc;"  }
-        %th(style="width: 10%") Unit Cost
-        %th(style="width: 10%") Total Cost
-        %th 
-        
+        %tr.header
+          %th(style="width: 40%") Ingredients
+          %th(style="width: 10%") Quantity
+          
+          %th(style="width: 10%") Unit
+          %th(style="width: 20%") Unit Cost
+          %th(style="width: 20%") Total Cost
+          %th 
+          %th  
+          
     
-        = f.fields_for :recipe_ingredients do |recipe_ingredient| 
-          = render 'recipe_ingredient_fields', f: recipe_ingredient 
-    
+          = f.fields_for :recipe_ingredients do |recipe_ingredient| 
+            = render 'recipe_ingredient_fields', f: recipe_ingredient 
+    .span4
+      %table#recipe_recipes.table.table-striped
+        %tfoot
+          %tr
+            %td(colspan="2" style="text-align:center;")= link_to_add_association('Add Recipe', f, :recipes, 'data-association-insertion-node' => '#recipe_recipes',   'data-association-insertion-method' => 'append',    :wrap_object => Proc.new {|recipe| recipe.build_parent; recipe}, class: "btn btn-default")
+   
+        %tr.header
+          %th Recipe
+          %th
+          
   .actions
     = f.submit 
   
