@@ -1,6 +1,8 @@
 Inventory::Application.routes.draw do
   
   
+  resources :vendor_types
+
   resources :recipes
 
   resources :recipe_menu_items

@@ -1,0 +1,19 @@
+%h1 Listing vendor_types
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @vendor_types.each do |vendor_type|
+    %tr
+      %td= vendor_type.name
+      
+      %td= link_to 'Edit', edit_vendor_type_path(vendor_type), class: 'btn btn-default'
+      %td= link_to 'Destroy', vendor_type, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-default'
+
+%br
+
+= link_to 'New Vendor type', new_vendor_type_path

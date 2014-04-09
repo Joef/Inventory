@@ -1,9 +1,10 @@
 class Vendor < ActiveRecord::Base
   has_many    :invoices
-  validates   :name, presence: true
+  validates   :name, :vendor_type_id, presence: true
   validates   :name, uniqueness: true
   
   accepts_nested_attributes_for :invoices
+  belongs_to  :vendor_type
   
   #scope :this_year where 
   

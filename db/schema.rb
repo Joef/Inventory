@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406165803) do
+ActiveRecord::Schema.define(version: 20140409162554) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -101,13 +101,19 @@ ActiveRecord::Schema.define(version: 20140406165803) do
   end
 
   create_table "recipes", force: true do |t|
-    t.string   "title"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "parent_id"
     t.decimal  "serving_quantity"
     t.decimal  "serving_size"
     t.decimal  "measure_id"
+  end
+
+  create_table "vendor_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "vendors", force: true do |t|
@@ -119,6 +125,7 @@ ActiveRecord::Schema.define(version: 20140406165803) do
     t.string   "address_postal_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "vendor_type_id"
   end
 
 end
