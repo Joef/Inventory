@@ -7,20 +7,32 @@
       %th Raw Ingredients
       %th Sub-recipes
       %th Total Cost
+      %th 20%
+      %th 25%
+      %th 30%
+      %th 33%
+      %th 35%
+      %th 40%
       %th 
 
   %tbody
     - @recipes.each do |recipe| 
       %tr
         %td
-          = link_to recipe.title, recipe
+          = link_to recipe.name, recipe
           %span.small
             [
             = link_to 'Edit', edit_recipe_path(recipe)
             ]  
-        %td= number_to_currency recipe.ingredient_cost, precision: 3 
-        %td 
-        %td
+        %td= number_to_currency recipe.serving_cost, precision: 3 
+        %td= number_to_currency recipe.sub_recipe_cost, precision: 3 
+        %td= number_to_currency recipe.total_cost, precision: 3
+        %td= '%.2f' % recipe.margin(0.20)
+        %td= '%.2f' % recipe.margin(0.25)
+        %td= '%.2f' % recipe.margin(0.30)
+        %td= '%.2f' % recipe.margin(0.33)
+        %td= '%.2f' % recipe.margin(0.35)
+        %td= '%.2f' % recipe.margin(0.40) 
         %td= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } 
       
 = link_to 'New Recipe', new_recipe_path, class: 'btn btn-primary'

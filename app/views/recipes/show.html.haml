@@ -1,31 +1,39 @@
 .breadcrumb
   = link_to 'Recipes', recipes_path 
   \:
-  %strong= @recipe.title 
+  %strong= @recipe.name 
 
 .row-fluid
   .span8
-    %h1(style="display:inline")= @recipe.title
+    %h1(style="display:inline")= @recipe.name
     %span.small 
       [
       = link_to 'Edit', edit_recipe_path(@recipe)
       ]  
     .clear
     %p
-      Yield:
-      = @recipe.serving_quantity
-      @
-      = @recipe.serving_size
-      = @recipe.measure.abbreviation if !@recipe.measure.nil?
-      \/ serving
+      &nbsp;      
   
 
 
     -if !@recipe.recipe_ingredients.empty?
-      %table.table.table-striped
+      %table.table.table-striped{:style => "margin-bottom: 0;"}
         %tfoot
-          %th{:colspan => "4", :style => "text-align:right; font-weight:bold;"} TOTAL
-          %th.price= number_to_currency @recipe.ingredient_cost, precision: 3 
+          %tr
+            %th{:colspan => "4", :style => "text-align:right; font-weight:bold;"} TOTAL INGREDIENT COST
+            %th.price= number_to_currency @recipe.ingredient_cost, precision: 3
+          %tr
+            %td
+            %td{:colspan => "5", :style => "text-align:right;"}
+              Yield:
+              = @recipe.serving_quantity
+              servings @
+              = @recipe.serving_size
+              = @recipe.measure.abbreviation if !@recipe.measure.nil?
+              \/ serving
+          %tr
+            %th{:colspan => "4", :style => "text-align:right; font-weight:bold;"} PER SERVING COST
+            %th.price= number_to_currency @recipe.serving_cost, precision: 3 
         %tr.header
           %th Raw Ingredients
           %th Qty
@@ -35,15 +43,40 @@
        
      
         = render @recipe.recipe_ingredients
+    -if !@recipe.sub_recipes.empty?  
+      %table.table.table-striped
+        %tfoot
+          %tr
+            %th{:colspan => "2", :style => "text-align:right; font-weight:bold;"} TOTAL SUB-RECIPE
+            %th.price= number_to_currency @recipe.sub_recipe_cost, precision: 3
+          %tr
+            %th{:colspan => "2", :style => "text-align:right; font-weight:bold;"} TOTAL
+            %th.price= number_to_currency @recipe.total_cost, precision: 3
+        %tr.header
+          %th + Sub Recipes
+          %th Servings
+          %th.price Price
+        = render @recipe.sub_recipes
   .span4
     %small Total Recipe Cost
-    %h1(style="margin-top:0;")= number_to_currency @recipe.total_cost
-      
+    %h1(style="margin-top:0;")= number_to_currency @recipe.total_cost, precision: 3
+    
+    if menu_item then
     %table.table.table-striped
-      %tfoot
-        %th{:style => "text-align:right; font-weight:bold;"}
-        %th.price $0.00
       %tr.header
-        %th Sub Recipe
-        %th.price Price
-
+        %th 20%
+        %th 25%
+        %th 30%
+        %th 33%
+        %th 35%
+        %th 40%
+      %tr
+        %td= '%.2f' % @recipe.margin(0.20)
+        %td= '%.2f' % @recipe.margin(0.25)
+        %td= '%.2f' % @recipe.margin(0.30)
+        %td= '%.2f' % @recipe.margin(0.33)
+        %td= '%.2f' % @recipe.margin(0.35)
+        %td= '%.2f' % @recipe.margin(0.40) 
+      
+    %hr
+    

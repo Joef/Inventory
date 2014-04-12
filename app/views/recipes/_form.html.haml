@@ -13,8 +13,8 @@
   .row-fluid
     .span8
       .field
-        = f.label :title 
-        = f.text_field :title
+        = f.label :name 
+        = f.text_field :name
     .span4
       .field
         %label Serving Size 
@@ -51,12 +51,13 @@
       %table#recipe_recipes.table.table-striped
         %tfoot
           %tr
-            %td(colspan="2" style="text-align:center;")= link_to_add_association('Add Recipe', f, :recipes, 'data-association-insertion-node' => '#recipe_recipes',   'data-association-insertion-method' => 'append',    :wrap_object => Proc.new {|recipe| recipe.build_parent; recipe}, class: "btn btn-default")
+            %td(colspan="2" style="text-align:center;")= link_to_add_association('Add Recipe', f, :sub_recipes, 'data-association-insertion-node' => '#recipe_recipes',   'data-association-insertion-method' => 'append',    :wrap_object => Proc.new {|sub_recipe| sub_recipe.build_recipe_b; sub_recipe}, class: "btn btn-default")
    
         %tr.header
           %th Recipe
           %th
-          
+          = f.fields_for :sub_recipes do |sub_recipe|
+            = render 'sub_recipe_fields', f: sub_recipe
   .actions
     = f.submit 
   

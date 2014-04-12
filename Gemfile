@@ -41,7 +41,7 @@ gem 'acts_as_tree'
 
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt-ruby', :require => 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'

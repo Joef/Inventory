@@ -1,0 +1,11 @@
+%tr.nested-fields
+  %td
+    /= f.text_field :title, class: 'grid ingredient_name'
+     
+    = f.collection_select :recipe_b_id, Recipe.all, :id, :name, {prompt: '...'}, style: "width: 160px" 
+    -#where("id != ?", @recipe.id)
+    = f.text_field :servings, style: "width: 40px"
+  
+  %td
+  %td
+  %td=link_to_remove_association 'Remove', f, :role=>"button", :class=>"btn btn-default" 
