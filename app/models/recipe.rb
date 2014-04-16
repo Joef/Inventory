@@ -28,10 +28,16 @@ class Recipe < ActiveRecord::Base
     #self.cost = ingredient_cost
   end
   def total_cost
+    if !sub_recipe_cost.nil?
     serving_cost + sub_recipe_cost
+    end
   end
   def serving_cost
-    ingredient_cost / serving_quantity
+    if !serving_quantity.nil?
+      ingredient_cost / serving_quantity
+    else 
+      0
+    end
   end
   def margin(rate)
     total_cost/rate
