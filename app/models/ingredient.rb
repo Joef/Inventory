@@ -20,4 +20,6 @@ class Ingredient < ActiveRecord::Base
     conversion = self.measure.conversions.where(measure_b_id: m_id).first
     return conversion.quantity if conversion
   end
+  
+  
 end

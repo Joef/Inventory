@@ -1,11 +1,12 @@
 .row-fluid
   .span8
-    %h2
+    %h2{:style => "display:inline;"}
       = @vendor.name
       %br
       %small
         = @vendor.format_address 
-      .pill= @vendor.vendor_type.name if !@vendor.vendor_type.nil?
+      .pill
+        = @vendor.vendor_type.name if !@vendor.vendor_type.nil?
        
     %small
       [
@@ -13,6 +14,8 @@
       ]
     %h3 
       Invoices
+      
+    = link_to 'Add Invoice', new_vendor_invoice_url(@vendor)
        
     %table.table.table-hover.table-striped
       %thead
@@ -26,9 +29,7 @@
           %th
         %tbody
           = render(@invoices)
-        %tfoot
-          %tr
-            %td(colspan="6" style="text-align:center;")= link_to('Add Invoice', new_vendor_invoice_url(@vendor), class: "btn btn-default")
+        
       %br
 
     
@@ -39,24 +40,10 @@
     %h1(style="margin-top:0;")= number_to_currency @vendor.total_spend(@this_year - 1)
     
     %h3 Price List 
-    .well
-      %p
-        Need a large join statement to pull all the products from this vendor
+    
     %table.table
-      %tr  
-        %td Asparagus
-        %td $3.25 / lb
-      %tr  
-        %td Celery
-        %td $1.73 / cnt
-      %tr  
-        %td Beet, Golden
-        %td  $2.70 / lb
-      %tr  
-        %td Potato, Fingerling
-        %td $2.33 / lb
+     
       
-            
       
       
       

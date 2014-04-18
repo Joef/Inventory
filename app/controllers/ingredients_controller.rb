@@ -7,16 +7,16 @@ class IngredientsController < ApplicationController
     if params[:term]
       @ingredients = Ingredient.find(:all,:conditions => ['name LIKE ?', "%#{params[:term]}%"])
     else 
-      @ingredients = Ingredient.includes(:category).all
+      @ingredients = Ingredient.includes(:category)
     end
   end
 
   # GET /ingredients/1
   # GET /ingredients/1.json
   def show
-    @invoice_ingredients = @ingredient.invoice_ingredients.includes(:invoice, :measure).all
-  end
-
+    @invoice_ingredients = @ingredient.invoice_ingredients.includes(:invoice, :measure)
+    @average = @invoice_ingredients.collect(&:price_per_unit).sum.to_f / @invoice_ingredients.length if @invoice_ingredients.length > 0
+ end
   # GET /ingredients/new
   def new
     @ingredient = Ingredient.new

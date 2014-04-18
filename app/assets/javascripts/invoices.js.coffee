@@ -12,7 +12,7 @@ jQuery ->
         e.preventDefault()
         $('.add_fields').click()
         $('.vendor_number').last().focus()
-      return false
+      return true
       
   
     

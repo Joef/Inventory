@@ -2,7 +2,7 @@
 
 .row-fluid
   .span8
-    %h3.inline Vendors
+    %h4.inline Kitchen Vendors
     [
     = link_to 'Add New', new_vendor_path
     ]
@@ -18,8 +18,24 @@
         %th= "Account in #{Time.now.year - 1}"
         
     
-      - @vendors.each do |vendor|
+      - @kitchen.each do |vendor|
         = render vendor
+    %h4.inline Bar Vendors
+    [
+    = link_to 'Add New', new_vendor_path
+    ]
+    .clear
+    %table.table.table-striped
+      %tr
+        %th= sortable "name"
+        %th Last Invoice
+         
+        %th Amount
+        %th Date
+        %th
+        %th= "Account in #{Time.now.year - 1}"
+        - @bar.each do |vendor|
+          = render vendor
     
 
     %br

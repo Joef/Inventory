@@ -17,12 +17,12 @@ class InvoiceIngredient < ActiveRecord::Base
   def price_per_unit
     if cost_basis == 0
       if(qty_shipped * pack_qty * pack_size) > 0
-        extended / (qty_shipped * pack_qty * pack_size) 
+        extended / (qty_shipped * pack) 
       else
         0
       end  
     else
-      extended / (pack_qty * pack_size)
+      extended / (pack)
     end
   end
   def ingredient_name

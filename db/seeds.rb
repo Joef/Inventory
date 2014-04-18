@@ -490,7 +490,7 @@ measures = Measure.create(
     {name: 'Liter',       abbreviation: 'L',    volume_weight: 0,   english_metric: 1 },  #7
     {name: 'Pound',       abbreviation: 'lb',   volume_weight: 1,   english_metric: 0 },  #8
     {name: 'Ounce (wt)',  abbreviation: 'oz',   volume_weight: 1,   english_metric: 0 },  #9
-    {name: 'gram',        abbreviation: 'g',    volume_weight: 0,   english_metric: 1 }   #10
+    {name: 'gram',        abbreviation: 'g',    volume_weight: 0,   english_metric: 1 },   #10
     {name: 'count',       abbreviation: 'cnt',  volume_weight: 0,   english_metric: 0 }   #11
   ]
 

@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
-
+ruby "1.9.3"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
+
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', group: :test
+gem 'pg', group: :development
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -41,8 +43,8 @@ gem 'acts_as_tree'
 
 
 #server
-#gem 'thin'
-gem 'unicorn'
+gem 'thin'
+#gem 'unicorn'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', :require => 'bcrypt'
@@ -58,3 +60,7 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
  
 #quiet the verbose asset logging
 gem 'quiet_assets', group: :development 
+
+
+#for heroku
+gem 'rails_12factor', group: :production

@@ -4,6 +4,15 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 development:
+  adapter: postgresql
+  encoding: unicode
+  database: inventory_development
+  pool: 5
+  
+  timeout: 5000
+
+
+development1:
   adapter: sqlite3
   database: db/development.sqlite3
   pool: 5
@@ -19,11 +28,16 @@ test:
   timeout: 5000
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: inventory_production
+  adapter: postgresql
+  encoding: unicode
+  database: inventory_development
   pool: 5
-  username: mom
-  password: bossy
-  host: localhost
+  
+  timeout: 5000
+  
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5

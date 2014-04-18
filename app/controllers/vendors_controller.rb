@@ -13,6 +13,11 @@ class VendorsController < ApplicationController
     @this_year = Time.now.year
     @last_year = @this_year - 1
     @invoices = @vendor.invoices.order(invoice_date: :desc)
+    @products = @invoices.
+      select('ingredients.name, ingredients.id, invoice_date, invoice_ingredients.price').
+      joins(:ingredients).
+      group('ingredients.id','ingredients.name', 'invoices.invoice_date', 'invoice_ingredients.price').
+      order('ingredients.name ASC')
     
     
   end

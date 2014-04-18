@@ -25,6 +25,9 @@ module ApplicationHelper
   def javascript(*files)
     content_for(:head) { javascript_include_tag(*files) }
   end
+  def object_name
+    params[:controller].to_s + '-' + params[:id].to_s
+  end
   def us_states
     [
       ['Alabama', 'AL'],

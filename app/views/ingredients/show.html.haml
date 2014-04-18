@@ -1,21 +1,32 @@
+- javascript 'https://www.google.com/jsapi'
+- javascript 'ingredients'
+ 
+  
 .breadcrumb
   %strong= link_to 'Ingredients', ingredients_path 
   \: 
   = @ingredient.name 
 
+  
 %h1(style="display:inline;")
   = @ingredient.name 
 = link_to 'Edit', edit_ingredient_path(@ingredient) if @ingredient.custom? 
-
 .clear
 %p
   - if !@ingredient.category.nil?
     %strong Category:
     = link_to @ingredient.category.name, @ingredient.category 
+#calendar_basic{style: "height: 180px;"}
+
+
 .row-fluid
-  .span6
+  .span8
     %h4 Invoices
-  
+    %p
+      Average price: 
+      =number_to_currency @average
+      \/
+      = @ingredient.measure.abbreviation if !@ingredient.measure.nil?
     %p 
       Last price:
       = number_to_currency @ingredient.last_price
@@ -29,13 +40,17 @@
             %td=i.invoice.invoice_date
             %td
               = link_to i.invoice.number, [i.invoice.vendor, i.invoice]
-              =i.invoice.vendor.name
+            %td
+              = link_to i.invoice.vendor.name, i.invoice.vendor
             %td
               =number_to_currency i.price_per_unit
               \/
               =i.measure.abbreviation
+            %td.price= '%.2f' % i.pack
+            %td= number_to_currency i.extended
           
-  .span6
+  .span4
+    
     %h4 Recipes
 
 

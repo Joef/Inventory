@@ -10,7 +10,7 @@ class Vendor < ActiveRecord::Base
   
   def total_spend(year=nil)
     year = Time.now.year-1  if year.nil?
-    self.invoices.where(['invoice_date > "?-01-01" AND invoice_date < "?-01-01"', year, year+1]).sum('total')
+    self.invoices.where(["invoice_date > date '?-01-01' AND invoice_date < date '?-01-01'", year, year+1]).sum('total')
   end
   def last_invoice
     

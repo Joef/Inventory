@@ -10,7 +10,7 @@
   %td= invoice_ingredient.description
   
   %td
-    = invoice_ingredient.pack
+    = '%.2f' % invoice_ingredient.pack
     
     = invoice_ingredient.measure.abbreviation
     (s)

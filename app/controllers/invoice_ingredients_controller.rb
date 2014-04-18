@@ -6,7 +6,9 @@ class InvoiceIngredientsController < ApplicationController
   # GET /invoice_ingredients.json
   def index
     if params[:term]
-      @invoice_ingredients = InvoiceIngredient.find(:all,:conditions => ['vendor_number LIKE ?', "%#{params[:term]}%"])
+      @invoice_ingredients = InvoiceIngredient.where(['vendor_number LIKE ?', "%#{params[:term]}%"]).includes(:ingredient).order("id DESC").group('ingredient_id')
+    elsif params[:ingredient_id]
+      @invoice_ingredients = InvoiceIngredient.where(["ingredient_id = ?", params[:ingredient_id]]).includes(:invoice, :ingredient).order("id DESC")
     else 
       @invoice_ingredients = InvoiceIngredient.all
     end
