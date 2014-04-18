@@ -4,7 +4,7 @@ class ChangeConversions < ActiveRecord::Migration
     create_table "conversions", force: true do |t|
     t.integer  "measure_a_id"
     t.integer  "measure_b_id"
-    t.decimal   "quantity"
+    t.decimal   "quantity", :decimal, :precision => 8, :scale => 2 
     t.datetime "created_at"
     t.datetime "updated_at"
   end
