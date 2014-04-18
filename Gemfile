@@ -43,8 +43,8 @@ gem 'acts_as_tree'
 
 
 #server
-gem 'thin'
-#gem 'unicorn'
+gem 'thin', group: [:development, :test]
+gem 'unicorn', group: :production
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', :require => 'bcrypt'
