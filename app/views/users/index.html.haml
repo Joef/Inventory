@@ -11,7 +11,8 @@
 
   - @users.each do |user|
     %tr
-      %td= user.name
+      %td= user.first_name
+      %td= user.last_name
       %td= user.password_digest
       %td= user.pin
       %td= link_to 'Show', user

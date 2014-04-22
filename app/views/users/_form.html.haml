@@ -6,14 +6,23 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :password_digest
-    = f.text_field :password_digest
-  .field
-    = f.label :pin
-    = f.text_field :pin
+  .field.row-fluid
+    .span4= f.label :first_name
+    .span8= f.text_field :first_name
+  .field.row-fluid
+    .span4= f.label :last_name
+    .span8= f.text_field :last_name
+  .field.row-fluid
+    .span4= f.label :email
+    .span8= f.text_field :email
+  .field.row-fluid
+    .span4= f.label :password
+    .span8= f.password_field :password
+  .field.row-fluid
+    .span4= f.label :password_confirmation
+    .span8= f.password_field :password_confirmation
+  .field.row-fluid
+    .span4= f.label :pin
+    .span8= f.text_field :pin
   .actions
     = f.submit 'Save'
