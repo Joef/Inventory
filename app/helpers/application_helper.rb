@@ -28,6 +28,13 @@ module ApplicationHelper
   def object_name
     params[:controller].to_s + '-' + params[:id].to_s
   end
+  def menu_item_type
+    [
+      ['Not a menu item', 0],
+      ['Food', 1],
+      ['Beverage', 2]
+    ]
+  end
   def us_states
     [
       ['Alabama', 'AL'],

@@ -10,6 +10,7 @@ class Invoice < ActiveRecord::Base
                     :allow_destroy => true
     accepts_nested_attributes_for :ingredients
     
+    
     before_save :calculate_total_price
     before_save :update_last_price
                                     

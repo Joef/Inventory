@@ -3,6 +3,8 @@ class InvoiceIngredient < ActiveRecord::Base
   belongs_to  :invoice
   belongs_to  :ingredient
   
+  delegate :invoice_date, :to=>:date, :prefix=>true, :allow_nil=>true
+  
   before_save :update_last_price
   
   accepts_nested_attributes_for :ingredient,

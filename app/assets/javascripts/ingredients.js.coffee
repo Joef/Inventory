@@ -30,8 +30,9 @@ class Chart
           date = new Date(year, month-1, day)
           dataTable.addRow([date , qty]) 
         
-        #add a dummy row for next year to normalize to 0
-        dataTable.addRow([new Date(2014, 0, 1), 0])
+        if data.length > 0
+          #add a dummy row for next year to normalize to 0
+          dataTable.addRow([new Date(2014, 0, 1), 0])
         graph = new google.visualization.Calendar(document.getElementById('calendar_basic'))
 
         options = {

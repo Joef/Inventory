@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416184255) do
+ActiveRecord::Schema.define(version: 20140421132126) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -108,7 +111,7 @@ ActiveRecord::Schema.define(version: 20140416184255) do
     t.integer  "parent_id"
     t.decimal  "serving_quantity"
     t.decimal  "serving_size"
-    t.decimal  "measure_id"
+    t.integer  "measure_id"
     t.integer  "menu_item_type"
   end
 

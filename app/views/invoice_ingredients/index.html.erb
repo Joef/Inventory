@@ -18,10 +18,11 @@
   <tbody>
     <% @invoice_ingredients.each do |invoice_ingredient| %>
       <tr>
-        <td><%= invoice_ingredient.invoice_id %></td>
+        <td><%= invoice_ingredient.id %></td>
+        <td><%= invoice_ingredient.invoice.invoice_date if !invoice_ingredient.invoice.nil? %></td>
         <td><%= invoice_ingredient.ingredient_id %></td>
         <td><%= invoice_ingredient.measure_id %></td>
-        <td><%= invoice_ingredient.quantity %></td>
+        <td><%= invoice_ingredient.qty_ordered %></td>
         <td><%= invoice_ingredient.price %></td>
         <td><%= invoice_ingredient.extended %></td>
         <td><%= link_to 'Show', invoice_ingredient %></td>
@@ -34,4 +35,3 @@
 
 <br>
 
-<%= link_to 'New Invoice ingredient', new_invoice_ingredient_path %>
