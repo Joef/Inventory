@@ -14,7 +14,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients/1
   # GET /ingredients/1.json
   def show
-    @invoice_ingredients = @ingredient.invoice_ingredients.includes(:invoice, :measure)
+    @invoice_ingredients = @ingredient.invoice_ingredients.includes(:invoice, :measure).joins(:invoice).order('invoices.invoice_date DESC')
     @average = @invoice_ingredients.collect(&:price_per_unit).sum.to_f / @invoice_ingredients.length if @invoice_ingredients.length > 0
  end
   # GET /ingredients/new

@@ -34,6 +34,21 @@
       = @ingredient.measure.abbreviation if !@ingredient.measure.nil?
       
     %table.table.table-striped
+      %tr.header
+        %th
+          Invoice Date
+        %th
+          Invoice #
+        %th 
+          Vendor
+        %th
+          Vendor Number
+        %th
+          Cost
+        %th
+          Amount
+        %th 
+          Ext
       - @invoice_ingredients.each do |i|
         - if !i.invoice.nil?
           %tr
@@ -43,10 +58,14 @@
             %td
               = link_to i.invoice.vendor.name, i.invoice.vendor
             %td
+              = i.vendor_number
+            %td
               =number_to_currency i.price_per_unit
               \/
               =i.measure.abbreviation
-            %td.price= '%.2f' % i.pack
+            %td
+              = '%.2f' % i.pack
+              =i.measure.abbreviation
             %td= number_to_currency i.extended
           
   .span4

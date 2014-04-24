@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421132126) do
+ActiveRecord::Schema.define(version: 20140424030759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140421132126) do
   create_table "ingredients", force: true do |t|
     t.string   "name"
     t.integer  "category_id"
-    t.decimal  "last_price"
+    t.decimal  "last_price",     precision: 8, scale: 3
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "parent_id"
@@ -49,20 +49,20 @@ ActiveRecord::Schema.define(version: 20140421132126) do
     t.integer  "invoice_id"
     t.integer  "ingredient_id"
     t.integer  "measure_id"
-    t.decimal  "qty_ordered"
-    t.decimal  "price"
-    t.decimal  "extended"
+    t.decimal  "qty_ordered",   precision: 8, scale: 3
+    t.decimal  "price",         precision: 8, scale: 3
+    t.decimal  "extended",      precision: 8, scale: 3
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "qty_shipped"
+    t.decimal  "qty_shipped",   precision: 8, scale: 3
     t.string   "brand"
     t.string   "item_number"
     t.string   "vendor_number"
     t.text     "description"
     t.string   "unit"
     t.decimal  "pack"
-    t.decimal  "pack_qty"
-    t.decimal  "pack_size"
+    t.decimal  "pack_qty",      precision: 8, scale: 3
+    t.decimal  "pack_size",     precision: 8, scale: 3
     t.integer  "cost_basis"
   end
 
