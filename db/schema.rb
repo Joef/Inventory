@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140424030759) do
+ActiveRecord::Schema.define(version: 20140424050720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140424030759) do
     t.decimal  "pack_qty",      precision: 8, scale: 3
     t.decimal  "pack_size",     precision: 8, scale: 3
     t.integer  "cost_basis"
+    t.boolean  "out_of_stock"
   end
 
   create_table "invoices", force: true do |t|
@@ -73,6 +74,7 @@ ActiveRecord::Schema.define(version: 20140424030759) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "total"
+    t.decimal  "sales_tax",    precision: 8, scale: 2
   end
 
   create_table "measures", force: true do |t|

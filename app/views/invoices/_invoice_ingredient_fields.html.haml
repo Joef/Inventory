@@ -18,6 +18,7 @@
   %td= f.text_field :pack_size, style: "width: 40px", class: 'grid cost' 
   %td= f.collection_select :measure_id, Measure.all, :id, :abbreviation, {prompt: '...'}, {style: "width: 60px", class: 'grid'} 
   /%td= f.select :pack, InvoiceIngredient::PACK_TYPES, prompt: '...' 
-  %td= f.text_field :price,  style: "width: 50px" , class: "currency", class: 'grid cost'
-  %td= f.text_field :extended,  style: "width: 50px", class: "currency", class: 'grid cost total' 
+  %td= f.text_field :price,  style: "width: 50px" , class: "currency", class: 'grid cost price'
+  %td= f.text_field :extended,  style: "width: 50px", class: "currency", class: 'grid cost total price'
+  %td= f.check_box :out_of_stock 
   %td= link_to_remove_association 'Remove', f, :role=>"button", :class=>"btn btn-default" 

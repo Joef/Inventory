@@ -71,9 +71,14 @@ li
 	padding: 8px 15px;
 }
 td.price,
-th.price
+th.price,
+input.price
 {
 	text-align: right;	
+}
+tr.out td
+{
+ background-color: #d77c7c;
 }
 .inline
 {

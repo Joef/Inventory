@@ -17,10 +17,16 @@
 .row-fluid.span12.line_items
   %table#invoice_ingredients.table.table-striped
     %tfoot
-      %th{:colspan => "8", :style => "text-align:right; font-weight:bold;"} TOTAL
-      %th.price= number_to_currency @invoice.total
-      %th
-      %th
+      %tr
+        %td{:colspan => "8", :style => "text-align:right;"} SALES TAX
+        %td.price= number_to_currency @invoice.sales_tax
+        %td
+        %td
+      %tr
+        %th{:colspan => "8", :style => "text-align:right; font-weight:bold;"} TOTAL
+        %th.price= number_to_currency @invoice.total
+        %th
+        %th
     %tr.header
       %th Vendor No.
       %th Ingredients

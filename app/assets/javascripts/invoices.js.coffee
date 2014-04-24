@@ -20,22 +20,26 @@ jQuery ->
   $('#invoice_invoice_date').blur().keydown (e) ->
     change_tab e
         
-  format_currency = (number) ->
-    (Math.round(number *100) / 100).toFixed(2)
+  format_currency = (number, precision) ->
+    (Math.round(number *100) / 100).toFixed(precision)
   
+  update_number = (field, precision) ->
+    field.value = format_currency field.value, precision
+    
   update_totals = ->
     sum = 0
     $('.total:visible').each ->
       sum += Number($(@).val())
-      $('#invoice_total').val format_currency sum
+    sum +=  Number($('.tax').val())
+    $('#invoice_total').val format_currency sum, 2
   
   calculate_total = (row) ->
     calculator = row.find('.cost')
     basis = row.find('.cost_basis:checked').val()
     if(parseInt(basis) == 1)
-      calculator[4].value = format_currency (calculator[1].value * calculator[2].value * calculator[3].value)
+      calculator[4].value = format_currency calculator[1].value * calculator[2].value * calculator[3].value, 2
     else
-      calculator[4].value = format_currency calculator[0].value * calculator[3].value   
+      calculator[4].value = format_currency calculator[0].value * calculator[3].value, 2   
     
     update_totals()
       
@@ -55,14 +59,17 @@ jQuery ->
         i = last_box.index(@)
         $('.vendor_number')[i+1].focus()
     
-    
+    $('.tax').blur ->
+      update_totals()
+      update_number @,2
+      return true
     
     $('.nested-fields').each -> 
       row = $(@)
       calculator = row.find('.cost')
       basis = row.find('.cost_basis:checked')
       
-      calculator[4].value = format_currency calculator[4].value if calculator.length > 0 # onload
+      calculator[4].value = format_currency calculator[4].value,3 if calculator.length > 0 # onload
       
       calculator.blur ->
         calculate_total row, basis.val()
@@ -170,13 +177,14 @@ jQuery ->
     if(current != 1)
       if parseInt(e.which) == 39 #right
         ix = current+1
+        
       if parseInt(e.which) == 37 #left
         ix = current-1
       if parseInt(e.which) == 40 #down
         ix = current+rowsize
       if parseInt(e.which) == 38 #up
         ix = current-rowsize
-    
+      #console.log ix
       #fields[ix].focus() if fields[ix]
     true
   true

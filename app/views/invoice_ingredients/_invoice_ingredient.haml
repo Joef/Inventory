@@ -1,4 +1,4 @@
-%tr.nested-fields
+%tr.nested-fields{:class=> ("out" if invoice_ingredient.out_of_stock?)}
   %td= invoice_ingredient.vendor_number
   %td= link_to invoice_ingredient.ingredient.name, invoice_ingredient.ingredient
     
