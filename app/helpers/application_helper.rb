@@ -1,4 +1,6 @@
 module ApplicationHelper
+  APPLICATION_NAME = "Inventory"
+  
   def class_name(link_path)
     current_page?(link_path) ? ' class="active"' : ''
   end
@@ -24,6 +26,13 @@ module ApplicationHelper
   end
   def javascript(*files)
     content_for(:head) { javascript_include_tag(*files) }
+  end
+  def pageTitle(*controller)
+    if params[:controller]
+        params[:controller].to_s.titleize + " | " + APPLICATION_NAME    
+    else
+    APPLICATION_NAME
+    end
   end
   def object_name
     params[:controller].to_s + '-' + params[:id].to_s

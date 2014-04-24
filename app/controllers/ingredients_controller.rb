@@ -27,16 +27,16 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients/1/edit
   def edit
-    if @ingredient.custom == 0 
-      redirect_to ingredients_path, notice: "Access denied for ingredient '#{@ingredient.name}'."
-    end
+    #if @ingredient.custom == 0 
+    #  redirect_to ingredients_path, notice: "Access denied for ingredient '#{@ingredient.name}'."
+    #end
   end
 
   # POST /ingredients
   # POST /ingredients.json
   def create
     @ingredient = Ingredient.new(ingredient_params)
-    @ingredient.custom = 0
+    @ingredient.custom = 1
     respond_to do |format|
       if @ingredient.save
         format.html { redirect_to ingredients_path, notice: 'Ingredient was successfully created.' }
