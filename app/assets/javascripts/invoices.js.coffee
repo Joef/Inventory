@@ -104,7 +104,7 @@ jQuery ->
 
     $('.vendor_number').each ->
       $(@).autocomplete({
-          minLength: 2
+          minLength: 4
           source: (request, response) -> 
             $.ajax
               url: "/invoice_ingredients.json"

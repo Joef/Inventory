@@ -6,10 +6,14 @@ class InvoiceIngredientsController < ApplicationController
   # GET /invoice_ingredients.json
   def index
     if params[:term]
+      subquery = InvoiceIngredient.select("distinct on (invoice_ingredients.ingredient_id) *").
+                  where(["vendor_number LIKE ?", "%#{params[:term]}%"])
       @invoice_ingredients = InvoiceIngredient.
-                              where(['vendor_number LIKE ?', "%#{params[:term]}%"]).
+                              select("*").
+                              from("(#{subquery.to_sql}) AS distinct_selected").
                               includes(:ingredient).
                               order("id DESC")
+                              
     elsif params[:ingredient_id]
       @invoice_ingredients = InvoiceIngredient.where(["ingredient_id = ?", params[:ingredient_id]]).includes(:invoice, :ingredient).order("id DESC")
     else 
