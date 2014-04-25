@@ -148,7 +148,7 @@ jQuery ->
             row.find("[name*='pack_size']").val(ui.item.value.pack_size)
             row.find("[name*='measure_id']").val(ui.item.value.measure_id)
             row.find("[name*='price']").val(format_currency ui.item.value.price,3)
-            row.find("[name*='extended']").val(format_currency ui.item.value.extended,3)
+            row.find("[name*='extended']").val(format_currency ui.item.value.extended,2)
             
             
             update_totals()

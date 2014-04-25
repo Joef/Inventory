@@ -1,4 +1,5 @@
 class VendorsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :set_vendor, only: [:show, :edit, :update, :destroy]
 
   # GET /vendors
@@ -12,7 +13,13 @@ class VendorsController < ApplicationController
   def show
     @this_year = Time.now.year
     @last_year = @this_year - 1
-    @invoices = @vendor.invoices.order(invoice_date: :desc)
+    
+    @years = (@this_year).downto(@this_year-3).collect{|p| ["#{p}", p]}
+    
+    @invoices = @vendor.invoices.order(sort_column + ' ' + sort_direction)
+    
+    
+    
     @products = @invoices.
       select('ingredients.name, ingredients.id, invoice_date, invoice_ingredients.price').
       joins(:ingredients).
@@ -75,6 +82,13 @@ class VendorsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_vendor
       @vendor = Vendor.find(params[:id])
+    end
+    
+    def sort_column
+      Invoice.column_names.include?(params[:sort]) ? params[:sort] : "invoice_date"
+    end
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

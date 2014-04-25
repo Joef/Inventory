@@ -2,29 +2,35 @@
   .span8
     %h2{:style => "display:inline;"}
       = @vendor.name
-      %br
+     
       %small
         = @vendor.format_address 
-      .pill
-        = @vendor.vendor_type.name if !@vendor.vendor_type.nil?
+      
        
     %small
       [
       = link_to 'Edit', edit_vendor_path(@vendor)
       ]
-    %h3 
+    %br.clear   
+    %h3.inline 
       Invoices
-      
-    = link_to 'Add Invoice', new_vendor_invoice_url(@vendor)
-       
-    %table.table.table-hover.table-striped
+    %small
+      [ 
+      = link_to 'Add Invoice', new_vendor_invoice_url(@vendor)
+      ]
+    %br.clear  
+    = form_tag vendor_path, :remote => true do 
+      = select_tag :month, options_for_select(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']), style: 'width: 75px'
+      = select_tag :year, options_for_select(@years), style: 'width: 75px'
+      = link_to 'Filter', vendor_path,  class: 'filter'
+    %table.table.table-hover.table-striped#invoices_list
       %thead
         - if @vendor.invoices.length > 0 
           %tr
           %th
-          %th Number 
-          %th Date
-          %th Price
+          %th= sortable "number"
+          %th= sortable "invoice_date", "Date" 
+          %th= sortable "total", "Price"
           %th
           %th
         %tbody
@@ -34,6 +40,8 @@
 
     
   .span4
+    .pill
+      = @vendor.vendor_type.name if !@vendor.vendor_type.nil?
     %small= @this_year
     %h1(style="margin-top:0;")= number_to_currency @vendor.total_spend(@this_year)
     %small= @this_year - 1
