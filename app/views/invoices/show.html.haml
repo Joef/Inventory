@@ -13,7 +13,7 @@
 
 %p
   %strong Invoice date:
-  =@invoice.invoice_date 
+  =@invoice.invoice_date.strftime("%A, %B %e, %Y") 
 .row-fluid.span12.line_items
   %table#invoice_ingredients.table.table-striped
     %tfoot

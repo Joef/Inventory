@@ -3,9 +3,9 @@
   
   -if !vendor.last_invoice.nil?
     %td= link_to vendor.last_invoice.number, vendor_invoice_path(vendor, vendor.last_invoice)
-    %td= number_to_currency(vendor.last_invoice.total) 
+    %td.price= number_to_currency(vendor.last_invoice.total) 
     %td  
-      %span.small= vendor.last_invoice.invoice_date 
+      %span.small= vendor.last_invoice.invoice_date.strftime("%a, %b %d %Y")
   -else
     %td
     %td
@@ -14,7 +14,7 @@
     [
     = link_to 'Add Invoice', new_vendor_invoice_url(vendor.id) 
     ]
-  %td= number_to_currency(vendor.total_spend) if !vendor.total_spend.nil?
+  %td.price= number_to_currency(vendor.total_spend) if !vendor.total_spend.nil?
   
     
    

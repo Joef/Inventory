@@ -8,9 +8,9 @@
   
   
   %td= f.radio_button :cost_basis, 0, class: 'cost_basis'
-  %td= f.text_field :qty_shipped, style: "width: 25px", class: 'grid cost' 
+  %td= f.text_field :qty_shipped, style: "width: 35px", class: 'grid cost price' 
  
-  %td= f.select :unit, InvoiceIngredient::UNIT_TYPES, {prompt: '...'}, {style: "width: 60px", class: 'grid'  }
+  %td= f.select :unit, InvoiceIngredient::UNIT_TYPES, {prompt: '...'}, {style: "width: 57px", class: 'grid'  }
   %td= f.text_field :brand, style: "width: 60px", class: 'grid'
   %td(colspan="2")= f.text_field :description, style: "width: 130px", class: 'grid'  
   %td= f.text_field :pack_qty, style: "width: 35px", class: 'grid cost'

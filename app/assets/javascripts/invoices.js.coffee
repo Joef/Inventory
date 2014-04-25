@@ -36,6 +36,7 @@ jQuery ->
   calculate_total = (row) ->
     calculator = row.find('.cost')
     basis = row.find('.cost_basis:checked').val()
+    update_number calculator[0], 1
     if(parseInt(basis) == 1)
       calculator[4].value = format_currency calculator[1].value * calculator[2].value * calculator[3].value, 2
     else

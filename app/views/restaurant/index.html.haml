@@ -15,7 +15,7 @@
         %th Amount
         %th Date
         %th
-        %th= "Account in #{Time.now.year - 1}"
+        %th.price= "Account in #{Time.now.year - 1}"
         
     
       - @kitchen.each do |vendor|
@@ -30,10 +30,10 @@
         %th= sortable "name"
         %th Last Invoice
          
-        %th Amount
+        %th.price Amount
         %th Date
         %th
-        %th= "Account in #{Time.now.year - 1}"
+        %th.price= "Account in #{Time.now.year - 1}"
         - @bar.each do |vendor|
           = render vendor
     

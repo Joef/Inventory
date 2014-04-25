@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140424050720) do
+ActiveRecord::Schema.define(version: 20140425002329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,12 +49,12 @@ ActiveRecord::Schema.define(version: 20140424050720) do
     t.integer  "invoice_id"
     t.integer  "ingredient_id"
     t.integer  "measure_id"
-    t.decimal  "qty_ordered",   precision: 8, scale: 3
+    t.decimal  "qty_ordered",   precision: 4, scale: 1
     t.decimal  "price",         precision: 8, scale: 3
     t.decimal  "extended",      precision: 8, scale: 3
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "qty_shipped",   precision: 8, scale: 3
+    t.decimal  "qty_shipped",   precision: 4, scale: 1
     t.string   "brand"
     t.string   "item_number"
     t.string   "vendor_number"
