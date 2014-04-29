@@ -3,6 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
+  QTY_SHIP_PRECISION = 2
+  PRICE_PRECISION = 3
+  EXT_PRECISION = 2
+  
   $('.datepicker').datepicker { dateFormat: "yy-mm-dd" }
   
   change_tab = (e)->
@@ -31,16 +35,16 @@ jQuery ->
     $('.total:visible').each ->
       sum += Number($(@).val())
     sum +=  Number($('.tax').val())
-    $('#invoice_total').val format_currency sum, 2
+    $('#invoice_total').val format_currency sum, EXT_PRECISION
   
   calculate_total = (row) ->
     calculator = row.find('.cost')
     basis = row.find('.cost_basis:checked').val()
-    update_number calculator[0], 1
+    update_number calculator[0], EXT_PRECISION
     if(parseInt(basis) == 1)
-      calculator[4].value = format_currency calculator[1].value * calculator[2].value * calculator[3].value, 2
+      calculator[4].value = format_currency calculator[0].value * calculator[1].value * calculator[2].value * calculator[3].value, EXT_PRECISION
     else
-      calculator[4].value = format_currency calculator[0].value * calculator[3].value, 2   
+      calculator[4].value = format_currency calculator[0].value * calculator[3].value, EXT_PRECISION   
     
     update_totals()
       
@@ -62,7 +66,7 @@ jQuery ->
     
     $('.tax').blur ->
       update_totals()
-      update_number @,2
+      update_number @,EXT_PRECISION
       return true
     
     $('.nested-fields').each -> 
@@ -70,7 +74,7 @@ jQuery ->
       calculator = row.find('.cost')
       basis = row.find('.cost_basis:checked')
       
-      calculator[4].value = format_currency calculator[4].value,3 if calculator.length > 0 # onload
+      calculator[4].value = format_currency calculator[4].value,EXT_PRECISION if calculator.length > 0 # onload
       
       calculator.blur ->
         calculate_total row, basis.val()
@@ -147,8 +151,8 @@ jQuery ->
             row.find("[name*='pack_qty']").val(ui.item.value.pack_qty)
             row.find("[name*='pack_size']").val(ui.item.value.pack_size)
             row.find("[name*='measure_id']").val(ui.item.value.measure_id)
-            row.find("[name*='price']").val(format_currency ui.item.value.price,3)
-            row.find("[name*='extended']").val(format_currency ui.item.value.extended,2)
+            row.find("[name*='price']").val(format_currency ui.item.value.price,PRICE_PRECISION)
+            row.find("[name*='extended']").val(format_currency ui.item.value.extended,EXT_PRECISION)
             
             
             update_totals()
