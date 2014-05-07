@@ -1,0 +1,6 @@
+%tr
+  %td= link_to i.name, ingredient_path(i.ingredient_id)
+  %td= number_to_currency i.last_price
+  %td
+    \/
+    = i.measure.abbreviation
