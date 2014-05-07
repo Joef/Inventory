@@ -96,3 +96,23 @@ th .asc {
 th .desc {   
   background-image: url(/images/down_arrow.gif);   
 }  
+.sort
+{
+display: block;
+margin: auto 0;
+}
+.sort .icon-bar{
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: 3px;
+  line-height: 14px;
+  background-color: #ccc;
+  -webkit-border-radius: 1px;
+     -moz-border-radius: 1px;
+          border-radius: 1px;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+     -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+

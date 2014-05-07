@@ -2,12 +2,55 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+  
+
+
 jQuery ->
   QTY_SHIP_PRECISION = 2
   PRICE_PRECISION = 3
   EXT_PRECISION = 2
   
   $('.datepicker').datepicker { dateFormat: "yy-mm-dd" }
+  formHasChanged = false
+  submitted = false
+  
+  window.onbeforeunload = (e) ->
+    if (formHasChanged && !submitted) 
+      message = "You have not saved your changes."
+      e = e || window.event
+      if (e) 
+        e.returnValue = message
+      
+      message
+    
+  $("form").submit ->
+    submitted = true
+
+  $('#invoice_ingredients tbody').sortable({
+    handle: ("td:first > div.sort")
+    start : (event, ui) ->
+      start_pos = ui.item.index();
+      ui.item.data('start_pos', start_pos);
+  
+    update: (event, ui) ->
+      index = ui.item.index()
+      start_pos = ui.item.data('start_pos')
+      console.log index, start_pos
+      
+      #update the html of the moved item to the current index
+      console.log $('#invoice_ingredients tbody tr:nth-child(' + (index + 1) + ')')
+       
+      
+ #     if (start_pos < index) 
+      #update the items before the re-ordered item
+  #      $('#invoice_ingredients tbody:nth-child(' + i + ')').html(i - 1) for i in [index..1]
+   #   else 
+      #update the items after the re-ordered item
+    #    $('#invoice_ingredients tbody:nth-child(' + i + ')').html(i-1) for i in [index+2..$("#invoice_ingredients tbody").length] 
+          
+            
+  }).disableSelection()  
+  
   
   change_tab = (e)->
     
@@ -113,7 +156,7 @@ jQuery ->
           
         })
       return true
-
+    
     $('.vendor_number').each ->
       $(@).autocomplete({
           minLength: 4
@@ -174,7 +217,10 @@ jQuery ->
   $(document).on 'click', '.remove_fields', (e) ->
     e.preventDefault()
     update_totals()
-  
+    
+  $(document).on 'change', 'form.edit_invoice', (e) ->
+    formHasChanged = true
+      
   rowsize = 13
   $(document).on 'keyup', '.grid', (e) ->
     fields = $('.grid')

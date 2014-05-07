@@ -48,11 +48,16 @@
     %h1(style="margin-top:0;")= number_to_currency @vendor.total_spend(@this_year - 1)
     
     %h3 Price List 
-    
+    - @letters.each do |l|
+      - if l == params[:letter]
+        = l
+      - else
+        = link_to l, vendor_path(@vendor, letter: l)
     %table.table
-     
-      
-      
+      - @products.each do |i|
+        = render partial:"ingredients/price_list", locals: { i: i} 
+        
+   
       
       
 

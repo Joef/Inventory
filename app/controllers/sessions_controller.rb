@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     
     if user and user.authenticate(params[:password])
       session[:user_id]  = user.id
-      redirect_to admin_url, notice: "Logged in!"
+      redirect_to restaurant_url
     else
       redirect_to login_url, notice: "Invalid user/password combination"
     end

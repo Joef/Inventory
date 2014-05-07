@@ -18,7 +18,7 @@
 
   .field.row-fluid
     .span4= f.label :number
-    .span8= f.text_field :number 
+    .span8= f.text_field :number, class: 'entry'
   
   .field.row-fluid
     .span4= f.label :invoice_date 
@@ -28,41 +28,43 @@
     %table#invoice_ingredients.table.table-striped
       %tfoot
         %tr
-          %td.price(colspan="13" style="text-align:right;padding-top: 13px;font-weight:bold;") SALES TAX $
+          %td.price(colspan="14" style="text-align:right;padding-top: 13px;font-weight:bold;") SALES TAX $
           %td= f.text_field :sales_tax, style: "width: 50px", class: "tax price"
           %td
         %tr
-          %td.price(colspan="13" style="text-align:right;padding-top: 13px;font-weight:bold;") TOTAL $
+          %td.price(colspan="14" style="text-align:right;padding-top: 13px;font-weight:bold;") TOTAL $
           %td= f.text_field :total, style: "width: 50px", disabled: true, class: "price"
           %td
         %tr
-          %td(colspan="15" style="text-align:center;")= link_to_add_association('Add Line', f, :invoice_ingredients, 'data-association-insertion-node' => '#invoice_ingredients',		'data-association-insertion-method' => 'append',		:wrap_object => Proc.new {|invoice_ingredient| invoice_ingredient.build_ingredient; invoice_ingredient}, class: "btn btn-default")
+          %td(colspan="16" style="text-align:center;")= link_to_add_association('Add Line', f, :invoice_ingredients, 'data-association-insertion-node' => '#invoice_ingredients',		'data-association-insertion-method' => 'append',		:wrap_object => Proc.new {|invoice_ingredient| invoice_ingredient.build_ingredient; invoice_ingredient}, class: "btn btn-default")
    
-      %tr.header
-        %th Vendor No.
-        %th Ingredients
+      %thead
+        %tr.header
+          %th
+          %th Vendor No.
+          %th Ingredients
         
-        %th
-        %th(style="width: 10%; text-align:center;") 
-          Qty 
+          %th
+          %th(style="width: 10%; text-align:center;") 
+            Qty 
         
-          %br Ship
-        %th Unit
-        %th Brand
-        %th Desc
+            %br Ship
+          %th Unit
+          %th Brand
+          %th Desc
+          
+          %th{:style => "border-right: 1px solid #ccc;text-align:right;"  } Pack:
+          
+          %th Qty
+          %th
+          %th Size
+          %th{:style => "border-right: 1px solid #ccc;"  } Unit
+          %th(style="width: 10%") Price
+          %th(style="width: 10%") Ext
+          %th OUT
+          %th
         
-        %th{:style => "border-right: 1px solid #ccc;text-align:right;"  } Pack:
-        
-        %th Qty
-        %th
-        %th Size
-        %th{:style => "border-right: 1px solid #ccc;"  } Unit
-        %th(style="width: 10%") Price
-        %th(style="width: 10%") Ext
-        %th OUT
-        %th
-        
-    
+       
         = f.fields_for :invoice_ingredients do |invoice_ingredient| 
           = render 'invoice_ingredient_fields', f: invoice_ingredient 
 		

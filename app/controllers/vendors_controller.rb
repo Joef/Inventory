@@ -18,14 +18,28 @@ class VendorsController < ApplicationController
     
     @invoices = @vendor.invoices.order(sort_column + ' ' + sort_direction)
     
+    letter = params[:letter]? params[:letter] : "A"
+     
+    #select * from (select distinct on (invoice_ingredients.ingredient_id) name, last_price from invoice_ingredients 
+    #JOIN ingredients ON ingredients.id = invoice_ingredients.ingredient_id 
+    #JOIN invoices ON invoices.id = invoice_ingredients.invoice_id WHERE vendor_id = 1) AS distinct_selected;
+    @products  = InvoiceIngredient.select("distinct on (invoice_ingredients.ingredient_id) name, last_price, invoice_ingredients.measure_id, invoice_ingredients.ingredient_id").
+              joins(:ingredient).
+              joins(:invoice).
+              includes(:measure).
+              where(["invoices.vendor_id = ?", params[:id]])
+              
     
-    
-    @products = @invoices.
-      select('ingredients.name, ingredients.id, invoice_date, invoice_ingredients.price').
-      joins(:ingredients).
-      group('ingredients.id','ingredients.name', 'invoices.invoice_date', 'invoice_ingredients.price').
-      order('ingredients.name ASC')
-    
+    @letters = Array.new 
+    @products.each do |i|
+      l = i.name[0]
+      if @letters.length == 0 || !(@letters.include? l)
+        @letters.push(l)
+      end
+    end
+    @letters.sort! 
+    @products = @products.
+    where(["ingredients.name LIKE ?", "#{letter}%"])
     
   end
 
